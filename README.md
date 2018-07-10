@@ -1,53 +1,66 @@
-## How to Git It All Working on Your Computer
+# How to Git it all working on your computer
 
-### 1. Get git
+ - Clone [`ftc_app`](http://github.com/MidKnightMadness/ftc_app)
+```bash
+   cd /where/you/want/it
+   
+   git clone http://github.com/MidKnightMadness/ftc_app.git
+   ```
+ - Open a terminal window to `ftc_app` folder
+```bash
+   cd ftc_app/
+   
+   git submodule update --init
+   ```
+ - Open it as an android studio project
+ - `Preferences` -> `VCS` -> add `TeamCode/src/main/java/org/firstinspires/ftc/teamcode` as git root and remove all other roots
+ - Write assemblies and watch it run!
+ - If it does not download to phone correctly, run `ssh-keygen` with all default values ONCE
+ - If it still does not work, tell one of the team captains
+ 
+### Writing Assemblies
 
-### 2. Get ftc_app Working
-- Download Java SDK
-- Download Android Studio
-- Clone ftc_app repository
+The simplest assembly can be written like this:
 
-### 3. Get assemblies Working
-- Clone this repository
-- Copy MainBot/ and MiniBot/ directories into ftc_app/TeamCode/src/main/java/org/firstinspires/ftc/teamcode
-- Build and Install on Robot Controller
-- Each assembly has its own TeleOp, as well as Main Bot and Mini Bot (good luck running it w/o the bots though)
+```java
 
-- run ssh-keygen to generate id_rsa in .ssh if on mac and things still do not work.
+@Assembly
+public class Drive {
 
-## Notes
+}
+```
 
-### Installing OpenCV:
-- File > New > Import Module...
-- point to java folder in android release of opencv
-- Install any dependencies that Android Studio decides it wants
-- Modify build.gradle file in opencv
-<code>
-apply plugin: 'com.android.library'
+And you can add `init`, `start`, `loop`, and `stop` public methods to run at the respective times
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+```java
 
-    defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 19
+@Assembly
+public class Drive {
+
+    public void init(Telemetry telemetry, HardwareMap hardwareMap) {
+      //Runs when the init button is pressed
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+    
+    public void start() {
+      //Runs when start button is pressed, but before the loop starts
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-        }
+    
+    public void loop(double time, Gamepad gamepad1, Gamepad gamepad2) {
+      //Runs in a loop after start pressed, but before the stop button is pressed
+    }
+    
+    public void stop() {
+      //Runs after stop button is pressed
     }
 }
-</code>
-- Right-click on FtcRobotController in the project view and select "Open Module Settings"
-- Set OpenCV as dependency (Dependencies > +)
-- Switch to "Project" view and copy the sdk/native/libs/ folder from the opencv download to FtcRobotController/src/main/jniLibs/
-- Should now build ok
-- You can now import org.opencv.* to your project
+```
+
+Example `init` method:
+
+```java
+public void init(Telemetry telemetry, HardwareMap hardwareMap) {
+    telemetry.addLine("Initialized!");
+}
+```
+
+Note: All the methods listed above are optional they will simply not be called if they do not exist.
