@@ -1,25 +1,15 @@
-package org.tka.robotics.Drive;
+package org.firstinspires.ftc.teamcode.drive;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
-
-import org.firstinspires.ftc.robotcore.external.Predicate;
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.tka.robotics.Annotations.Assembly;
+import org.firstinspires.ftc.teamcode.common.Assembly;
 
 /**
  * Created by Gregory on 9/10/18.
  */
 
-@Assembly(OmniDrive.class)
-public interface Drive {
-
+public interface Drive extends Assembly {
     enum CoordinateSystem {
         RELATIVE, ABSOLUTE
     }
-
-    // Initialize the motors and sensors required.
-    // Please keep robot still while initializing.
-    void init(HardwareMap hardwareMap, Telemetry telemetry);
 
     // Starts integration of the Gyro.
     // This position will be zero for the rest of the program.
@@ -40,18 +30,11 @@ public interface Drive {
 
     // Move the robot in a specified direction [-180, 180], ending with a specified rotation [-180, 180], at a specified speed [-1, 1]
     // Default direction is zero, rotation is zero, and speed is the default.
-    void moveDRS(int direction, int rotation, double speed, Predicate<Drive> condition);
     void moveDRS(int direction, int rotation, double speed, long distance);
-    void moveDS(int direction, double speed, Predicate<Drive> condition);
     void moveDS(int direction, double speed, long distance);
-    void moveDR(int direction, int rotation, Predicate<Drive> condition);
     void moveDR(int direction, int rotation, long distance);
-    void moveRS(int rotation, double speed, Predicate<Drive> condition);
     void moveRS(int rotation, double speed, long distance);
-    void moveD(int direction, Predicate<Drive> condition);
     void moveD(int direction, long distance);
-    void moveR(int rotation, Predicate<Drive> condition);
     void moveR(int rotation, long distance);
-    void moveS(double speed, Predicate<Drive> condition);
     void moveS(double speed, long distance);
 }
