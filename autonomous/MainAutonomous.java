@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.common.Config;
 import org.firstinspires.ftc.teamcode.drive.Drive;
 import org.firstinspires.ftc.teamcode.drive.OmniDrive;
-import org.firstinspires.ftc.teamcode.drive.TankDrive;
 
 /**
  * Created by Gregory on 9/10/18.
