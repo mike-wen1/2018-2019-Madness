@@ -9,4 +9,5 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public interface Visual {
     void init(Telemetry telemetry);
     void inspectFrame(boolean debug) throws InterruptedException;
+    void stop();
 }

@@ -21,11 +21,10 @@ public class MineralTest extends LinearOpMode {
 
         waitForStart();
 
-        int i = 0;
+        //int i = 0;
         while (!isStopRequested()) {
-            v.inspectFrame(i % 20 == 0);
-            double waitUntil = time + 0.5;
-            while (time < waitUntil && !isStopRequested());
+            v.inspectFrame(false);
         }
+        v.stop();
     }
 }

@@ -1,9 +1,15 @@
 package org.firstinspires.ftc.teamcode.visual;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.vuforia.Frame;
 import com.vuforia.PIXEL_FORMAT;
@@ -13,6 +19,7 @@ import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,13 +31,16 @@ import java.io.FileOutputStream;
 public class VisualImpl implements Visual {
 
     private VuforiaLocalizer vuforia;
+    private ViewGroup parentView;
+    private ImageView cameraView;
+    private ImageView resultView;
     Telemetry telemetry;
 
     @Override
     public void init(Telemetry telemetry) {
         this.telemetry = telemetry;
         // Init the VuforiaLocalizer parameters object with the camera View ID
-        VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters(com.qualcomm.ftcrobotcontroller.R.id.cameraMonitorViewId);
+        VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters(); // to see the view, add com.qualcomm.ftcrobotcontroller.R.id.cameraMonitorViewId as param
 
         // Set the Back camera active
         params.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
@@ -48,6 +58,24 @@ public class VisualImpl implements Visual {
         Vuforia.setFrameFormat(PIXEL_FORMAT.RGB565, true);
         vuforia.setFrameQueueCapacity(1);
 
+        AppUtil.getInstance().synchronousRunOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                parentView = (ViewGroup) AppUtil.getInstance().getActivity().findViewById(com.qualcomm.ftcrobotcontroller.R.id.cameraMonitorViewId);
+                cameraView = new ImageView(AppUtil.getInstance().getApplication().getApplicationContext());
+                Bitmap image = Bitmap.createBitmap(1000, 600, Bitmap.Config.RGB_565);
+                image.eraseColor(Color.GREEN);
+                cameraView.setImageBitmap(image);
+                parentView.addView(cameraView);
+                cameraView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                cameraView.setRotation(-90);
+                resultView = new ImageView(AppUtil.getInstance().getApplication().getApplicationContext());
+                resultView.setImageBitmap(image);
+                parentView.addView(resultView);
+                resultView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                resultView.setRotation(-90);
+            }
+        });
         // Unable to use Vuforia Targets for minerals :(
     }
 
@@ -63,19 +91,18 @@ public class VisualImpl implements Visual {
                 unflippedBmp.copyPixelsFromBuffer(frame.getImage(i).getPixels());
 
                 Matrix m = new Matrix();
-                m.postScale(1, -1);
+                m.postScale(-1, -1);
                 Bitmap srcBmp = Bitmap.createBitmap(unflippedBmp, 0, 0, unflippedBmp.getWidth(), unflippedBmp.getHeight(), m, false);
                 // Output the height and width of the source image
                 telemetry.addLine("Height: " + srcBmp.getHeight());
                 telemetry.addLine("Width: " + srcBmp.getWidth());
-                int WIDTH = 10;
-                int HEIGHT = 6;
+                int WIDTH = 20;
+                int HEIGHT = 12;
                 telemetry.addLine("Modified Width: " + WIDTH);
                 telemetry.addLine("Modified Height: " + HEIGHT);
 
                 // Scale the Bitmap to a smaller, more reasonable size. (src, width, height, filter?)
-                Bitmap outBmp = Bitmap.createScaledBitmap(srcBmp, WIDTH, HEIGHT, false);
-
+                final Bitmap outBmp = Bitmap.createScaledBitmap(srcBmp, WIDTH, HEIGHT, false);
 
                 if (debug) {
                     try {
@@ -101,9 +128,31 @@ public class VisualImpl implements Visual {
 
                 // Use letters and telemetry to get a sense of what color ranges we want to look for in the final test
                 // Iterate the width of the image
+                final Bitmap resBmp = Bitmap.createBitmap(outBmp);
+                resBmp.eraseColor(Color.BLACK);
 
+                boolean foundFirstYellow = false;
+                for (int y = HEIGHT - 1; y >= 0; y--) {
+                    for (int x = 0; x < WIDTH; x++) {
+                        int amt_red = Color.red(outBmp.getPixel(x, y));
+                        int amt_green = Color.green(outBmp.getPixel(x, y));
+                        int amt_blue = Color.blue(outBmp.getPixel(x, y));
+                        if (amt_blue < 130 && amt_red > 130 && amt_green > 130) {
+                            if (!foundFirstYellow) {
+                                resBmp.setPixel(x, y, Color.rgb(255, 127, 0));
+                                foundFirstYellow = true;
+                            } else {
+                                resBmp.setPixel(x, y, Color.YELLOW);
+                            }
+                        } else if (amt_blue > 130 && amt_red > 130 && amt_green > 130) {
+                            resBmp.setPixel(x, y, Color.WHITE);
+                        }
+                    }
 
-                for (int fx = 0; fx < HEIGHT; fx++) {
+                    telemetry.update();
+                }
+
+                /*for (int fx = 0; fx < HEIGHT; fx++) {
                     textImage[fx] = "";
                     for (int fy = WIDTH - 1; fy >= 0; fy--) {
                         if (valueTest(outBmp.getPixel(fy, fx)) < 25) {
@@ -128,13 +177,32 @@ public class VisualImpl implements Visual {
                 for (String line : textImage) {
                     telemetry.addLine(line);
                 }
-                telemetry.update();
+                telemetry.update();*/
+
+                AppUtil.getInstance().synchronousRunOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        cameraView.setImageBitmap(Bitmap.createScaledBitmap(outBmp, 1000, 600, false));
+                        resultView.setImageBitmap(Bitmap.createScaledBitmap(resBmp, 1000, 600, false));
+                    }
+                });
             }
         }
     }
 
     private int valueTest(int color) {
-        return (Color.blue(color) + Color.red(color) + Color.green(color))/3 - 90;
+        return Color.blue(color);
     }
+
+    public void stop() {
+        AppUtil.getInstance().synchronousRunOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                parentView.removeView(cameraView);
+                parentView.removeView(resultView);
+            }
+        });
+    }
+
 
 }
