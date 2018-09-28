@@ -11,16 +11,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  */
 
 public abstract class AbstractAssembly extends OpMode implements Assembly {
-    public void init(HardwareMap hardwareMap, Telemetry telemetry) {
-        this.hardwareMap = hardwareMap;
-        this.telemetry = telemetry;
-        init();
-    }
-
-    public void loop(Gamepad gamepad1, Gamepad gamepad2, double time) {
+    public void loop(Gamepad gamepad1, Gamepad gamepad2) {
         this.gamepad1 = gamepad1;
         this.gamepad2 = gamepad2;
-        this.time = time;
     }
-
 }

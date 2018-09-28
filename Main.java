@@ -21,11 +21,10 @@ public class Main extends OpMode {
 
     @Override
     public void init() {
-        assemblies[0] = Config.Drive.NEW();
+        assemblies[0] = Config.Drive.NEW(hardwareMap, telemetry);
 
         for (AbstractAssembly assembly : assemblies) {
-            assembly.resetStartTime();
-            assembly.init(hardwareMap, telemetry);
+            assembly.init();
         }
     }
 
@@ -39,7 +38,7 @@ public class Main extends OpMode {
     @Override
     public void loop() {
         for (AbstractAssembly assembly : assemblies) {
-            assembly.loop(gamepad1, gamepad2, time);
+            assembly.loop(gamepad1, gamepad2);
         }
     }
 

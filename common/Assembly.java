@@ -10,7 +10,5 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  */
 
 public interface Assembly {
-    // Initialize the motors and sensors required.
-    // Please keep robot still while initializing.
-    void init(HardwareMap hardwareMap, Telemetry telemetry);
+    void init();
 }

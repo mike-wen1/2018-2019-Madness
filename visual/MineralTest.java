@@ -13,11 +13,12 @@ import org.firstinspires.ftc.teamcode.common.Config;
 @Autonomous
 public class MineralTest extends LinearOpMode {
 
-    Visual v = Config.Visual.NEW();
+    private Visual v;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        v.init(telemetry);
+        v = Config.Visual.NEW(hardwareMap, telemetry);
+        v.init();
 
         waitForStart();
 

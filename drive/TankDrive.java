@@ -11,34 +11,32 @@ import org.firstinspires.ftc.teamcode.common.Config;
  */
 
 public class TankDrive extends AbstractAssembly implements Drive {
-    public DcMotor[] motors = new DcMotor[7];
-
-    public static int FRONT_LEFT = 2;
-    public static int BACK_RIGHT = 3;
-    public static int BACK_LEFT = 4;
-    public static int FRONT_RIGHT = 5;
+    private DcMotor frontLeftMotor;
+    private DcMotor frontRightMotor;
+    private DcMotor backLeftMotor;
+    private DcMotor backRightMotor;
     
     @Override
     public void init() {
-        motors[FRONT_LEFT] = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);
-        motors[FRONT_LEFT].resetDeviceConfigurationForOpMode();
-        motors[FRONT_LEFT].setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motors[FRONT_LEFT].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontLeftMotor = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);
+        frontLeftMotor.resetDeviceConfigurationForOpMode();
+        frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        motors[BACK_RIGHT] = hardwareMap.dcMotor.get(Config.Drive.BACK_RIGHT);
-        motors[BACK_RIGHT].resetDeviceConfigurationForOpMode();
-        motors[BACK_RIGHT].setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motors[BACK_RIGHT].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontRightMotor = hardwareMap.dcMotor.get(Config.Drive.BACK_RIGHT);
+        frontRightMotor.resetDeviceConfigurationForOpMode();
+        frontRightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        motors[BACK_LEFT] = hardwareMap.dcMotor.get(Config.Drive.BACK_LEFT);
-        motors[BACK_LEFT].resetDeviceConfigurationForOpMode();
-        motors[BACK_LEFT].setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motors[BACK_LEFT].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeftMotor = hardwareMap.dcMotor.get(Config.Drive.BACK_LEFT);
+        backLeftMotor.resetDeviceConfigurationForOpMode();
+        backLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        motors[FRONT_RIGHT] = hardwareMap.dcMotor.get(Config.Drive.FRONT_RIGHT);
-        motors[FRONT_RIGHT].resetDeviceConfigurationForOpMode();
-        motors[FRONT_RIGHT].setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motors[FRONT_RIGHT].setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRightMotor = hardwareMap.dcMotor.get(Config.Drive.FRONT_RIGHT);
+        backRightMotor.resetDeviceConfigurationForOpMode();
+        backRightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     @Override

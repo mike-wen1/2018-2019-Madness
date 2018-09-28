@@ -15,8 +15,8 @@ public class MainAutonomous extends LinearOpMode{
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Drive d = Config.Drive.NEW();
-        d.init(hardwareMap, telemetry);
+        Drive d = Config.Drive.NEW(hardwareMap, telemetry);
+        d.init();
         waitForStart();
 
     }
