@@ -7,6 +7,6 @@ import org.firstinspires.ftc.teamcode.common.Assembly;
  */
 
 public interface Drive extends Assembly {
-    void move();
-    void moveBot();
+    void moveBot(int distance, int speed);
 }
+

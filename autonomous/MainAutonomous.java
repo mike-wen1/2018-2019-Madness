@@ -19,5 +19,6 @@ public class MainAutonomous extends LinearOpMode{
         d.init();
         waitForStart();
 
+        d.moveBot(1000, 1);
     }
 }

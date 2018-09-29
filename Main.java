@@ -17,11 +17,11 @@ import org.firstinspires.ftc.teamcode.common.Config;
 @TeleOp(name = "Main Robot", group = "Main")
 public class Main extends OpMode {
 
-    private AbstractAssembly[] assemblies = new AbstractAssembly[1];
+    private AbstractAssembly[] assemblies = new AbstractAssembly[1]; // Increase this
 
     @Override
     public void init() {
-        assemblies[0] = Config.Drive.NEW(hardwareMap, telemetry);
+        assemblies[0] = Config.Drive.NEW(hardwareMap, telemetry); // Copy this
 
         for (AbstractAssembly assembly : assemblies) {
             assembly.init();
