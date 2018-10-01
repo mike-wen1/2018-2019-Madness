@@ -25,6 +25,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 /**
+ * Visual Assembly adapted from last year's code
+ *
+ * Too crazy to comment fully now. Go ahead and try to understand it.
+ *
  * Created by Gregory on 9/14/18.
  */
 

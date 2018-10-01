@@ -1,28 +1,35 @@
 package org.firstinspires.ftc.teamcode.drive;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.common.AbstractAssembly;
 import org.firstinspires.ftc.teamcode.common.Config;
 
 /**
+ * TankDrive: A simple Drive implementation for a tank-drive robot.
+ *
  * Created by Gregory on 9/10/18.
  */
-@TeleOp
-public class TankDrive extends AbstractAssembly implements Drive {
 
-    DcMotor frontLeft;
-    DcMotor frontRight;
-    DcMotor backLeft;
-    DcMotor backRight;
+@TeleOp
+public class TankDrive extends OpMode implements Drive {
+
+    // Declare Motors
+    // DO NOT assign them to anything yet because hardwareMap is not necessarily defined until init runs.
+    private DcMotor frontLeft;
+    private DcMotor frontRight;
+    private DcMotor backLeft;
+    private DcMotor backRight;
 
     @Override
     public void init() {
-        frontLeft = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);
-        frontLeft.resetDeviceConfigurationForOpMode();
-        frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontLeft = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);    // Retrieve the motor from the hardwareMap with the name set in the Config class
+        frontLeft.resetDeviceConfigurationForOpMode();                   // Reset the motor
+        frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);          // Set the runMode
+        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); // Set the motor to brake when stopped as opposed to coast.
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);         // Reverse the left motors because they are facing the opposite direction.
 
         backRight = hardwareMap.dcMotor.get(Config.Drive.BACK_RIGHT);
         backRight.resetDeviceConfigurationForOpMode();
@@ -33,6 +40,7 @@ public class TankDrive extends AbstractAssembly implements Drive {
         backLeft.resetDeviceConfigurationForOpMode();
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         frontRight = hardwareMap.dcMotor.get(Config.Drive.FRONT_RIGHT);
         frontRight.resetDeviceConfigurationForOpMode();
@@ -42,24 +50,19 @@ public class TankDrive extends AbstractAssembly implements Drive {
 
     @Override
     public void loop() {
-        frontLeft.setPower(-1 * gamepad1.left_stick_y);
+        frontLeft.setPower(gamepad1.left_stick_y);
         frontRight.setPower(gamepad1.right_stick_y);
-        backLeft.setPower(-1 * gamepad1.left_stick_y);
+        backLeft.setPower(gamepad1.left_stick_y);
         backRight.setPower(gamepad1.right_stick_y);
     }
 
     @Override
-    public void moveBot(int distance, int speed) {
-        frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    public void moveBot(int distance, int speed) throws InterruptedException {
         frontLeft.setPower(speed);
-        frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        frontRight.setPower(-speed);
-        backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontRight.setPower(speed);
         backLeft.setPower(speed);
-        backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        backRight.setPower(-speed);
-        double time = Config.time.milliseconds();
-        while (Config.time.milliseconds() < time + 2000) {}
+        backRight.setPower(speed);
+        Thread.sleep(2000);
         frontRight.setPower(0);
         frontLeft.setPower(0);
         backLeft.setPower(0);
