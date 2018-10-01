@@ -1,8 +1,6 @@
 # MidKnight Mayhem Team Code 2018-2019!
 
 ## Setting up the development environment
- - If you have Android Studio in your Applications folder, skip steps 1
-
 1. Open Terminal.app (in `/Applications/Utilities/` or by using spotlight `Cmd-Space 'Terminal'`)
 2. Run `open ~/Robotics`. If you have a folder named `ftc_app` there, skip to step 8.
 3. Run `mkdir Robotics ; cd Robotics` in the Terminal (creates a Robotics folder in your home directory and enters it)
@@ -10,13 +8,14 @@
 5. If the clone begins to download, you may skip to step 8.
 6. If the clone fails and asks to install Developer Tools, follow the instructions until the installation fails or succeeds. If it succeeds, repeat step 4 and continue from there.
 7. If the Developer Tools installation fails, download [this CLT.zip file](https://drive.google.com/file/d/1hbAylHCBn1czBi7pAyXGC19QpKIXGkVK/view?usp=sharing), decompress it, drag the file named RUNME onto the Terminal window, and run it (press enter). When it completes, you may delete both the CLT folder and zip file and return to step 4 to continue from there.
-8. Run `cd ftc_app/TeamCode/src/main/java/org/firstinspires/ftc/teamcode` (check spelling)
+8. Run `cd ftc_app ; git pull`
+8. Run `cd TeamCode/src/main/java/org/firstinspires/ftc/teamcode` (check spelling)
 9. Run `git remote set-url https://github.com/MidKnightMadness/2018-2019-{TeamName}.git` where `{TeamName}` is either `Mayhem` or `Madness`.
 10. Run `git pull`
 11. Run `mkdir ~/Applications ; open ~/Applications`
-11. If you already have Android Studio installed, (look in ~/Applications folder you just opened), you may open it and skip to step 18. Otherwise download [Android Studio](https://developer.android.com/studio/)
+11. If you already have Android Studio installed, (look in ~/Applications folder you just opened), you may open it and skip to step 20. Otherwise download [Android Studio](https://developer.android.com/studio/)
 12. Open `Android Studio.dmg` that you just downloaded.
-13. Copy the `Android Studio.app` into the folder  that opened in step 11. (Replace earlier version if any)
+13. Copy the `Android Studio.app` into the folder  that opened in step 12. (Replace earlier version if any)
 14. Eject and delete `Android Studio.dmg`
 15. Open `Android Studio.app` that you just copied.
 16. If you have had a previous installation of Android Studio, import settings from previous version, otherwise do not import settings.
@@ -33,7 +32,6 @@
  - Developer Tools does not install: follow step 7.
  - Android Studio gives error on build: Cannot Find valid certification path to requested target: Quit Android Studio, connect to a non-school wifi, then try again.
  - Android Studio gives warning on build: Configuration 'compile' is obsolete and has been replaced with 'implementation' and 'api': This is FTC's problem and can be ignored.
-
 
 ## Introduction to the code
 1. I would recommend https://www.tutorialspoint.com/java/ for java language help and https://www.geeksforgeeks.org/interfaces-in-java/ for understanding the interfaces that we are using this year, as well as https://codecademy.org/learn-java, and https://codingame.com/ for more practice learning Java.
