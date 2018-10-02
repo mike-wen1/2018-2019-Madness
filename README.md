@@ -7,7 +7,7 @@
 4. Run `git clone --recursive https://github.com/MidKnightMadness/ftc_app.git` (pulls the latest copy of the SDK from github)
 5. If the clone begins to download, you may skip to step 8.
 6. If the clone fails and asks to install Developer Tools, follow the instructions until the installation fails or succeeds. If it succeeds, repeat step 4 and continue from there.
-7. If the Developer Tools installation fails, download [this CLT.zip file](https://drive.google.com/file/d/1hbAylHCBn1czBi7pAyXGC19QpKIXGkVK/view?usp=sharing), decompress it, drag the file named RUNME onto the Terminal window, and run it (press enter). When it completes, you may delete both the CLT folder and zip file and return to step 4 to continue from there.
+7. If the Developer Tools installation fails, download [this CLT.zip file](https://drive.google.com/file/d/1hbAylHCBn1czBi7pAyXGC19QpKIXGkVK/view?usp=sharing), decompress it, drag the file named RUNME onto the Terminal window, and run it (press enter). When it completes (there may be a no process error), you must quit and reopen terminal, and you may delete both the CLT folder and zip file and return to step 4 to continue from there.
 8. Run `cd ftc_app ; git pull`
 8. Run `cd TeamCode/src/main/java/org/firstinspires/ftc/teamcode` (check spelling)
 9. Run `git config push.default upstream`
