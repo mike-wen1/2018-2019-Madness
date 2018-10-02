@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.common.Config;
  */
 
 @TeleOp
-public class TankDrive extends OpMode implements Drive {
+public class TankDrive extends Drive {
 
     // Declare Motors
     // DO NOT assign them to anything yet because hardwareMap is not necessarily defined until init runs.

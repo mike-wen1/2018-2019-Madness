@@ -34,11 +34,11 @@
  - Android Studio gives warning on build: Configuration 'compile' is obsolete and has been replaced with 'implementation' and 'api': This is FTC's problem and can be ignored.
 
 ## Introduction to the code
-1. I would recommend https://www.tutorialspoint.com/java/ for java language help and https://www.geeksforgeeks.org/interfaces-in-java/ for understanding the interfaces that we are using this year, as well as https://codecademy.org/learn-java, and https://codingame.com/ for more practice learning Java.
+1. I would recommend https://www.tutorialspoint.com/java/ for java language help as well as https://codecademy.org/learn-java, and https://codingame.com/ for more practice learning Java.
 2. Open the code in Android Studio and read the comments at the beginnings of the files to understand the layout.
 
 ### Notes
- - Each Assembly is contained in a package with an Interface which describes its abilities (moveBot...) and an implementation that (usually) extends OpMode.
+ - Each Assembly is contained in a package with an abstract class (Drive...) which describes its abilities (moveBot...) and an implementation that extends the abstract class (TankDrive...).
  - Assembly Interfaces must include a `void init()` method. Otherwise the init method is not visible to Autonomous Programs.
  - The `Config.{Assembly}.NEW` method initializes the Assembly. There is __no need to call init__ in Autonomous programs.
  - If you need to use a loop, add a condition if  `Thread.currentThread().isInterrupted()` then you must exit immediately to prevent App Crash. The Robot Controller is set to crash if an autonomous program takes too long to stop after the stop button is pressed or timeout reached. Ensure your code will stop immediately if it is interrupted.

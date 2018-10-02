@@ -32,13 +32,12 @@ import java.io.FileOutputStream;
  * Created by Gregory on 9/14/18.
  */
 
-public class VisualImpl implements Visual {
+public class VisualImpl extends Visual {
 
     private VuforiaLocalizer vuforia;
     private ViewGroup parentView;
     private ImageView cameraView;
     private ImageView resultView;
-    public Telemetry telemetry;
 
     @Override
     public void init() {
