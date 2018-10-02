@@ -10,14 +10,13 @@
 7. If the Developer Tools installation fails, download [this CLT.zip file](https://drive.google.com/file/d/1hbAylHCBn1czBi7pAyXGC19QpKIXGkVK/view?usp=sharing), decompress it, drag the file named RUNME onto the Terminal window, and run it (press enter). When it completes (there may be a no process error), you must quit and reopen terminal, and you may delete both the CLT folder and zip file and return to step 4 to continue from there.
 8. Run `cd ftc_app ; git pull`
 8. Run `cd TeamCode/src/main/java/org/firstinspires/ftc/teamcode` (check spelling)
-9. Run `git config push.default upstream`
 9. Run `git remote set-url origin https://github.com/MidKnightMadness/2018-2019-{TeamName}.git` where `{TeamName}` is either `Mayhem` or `Madness`.
 9. Run `git checkout master`
 10. Run `git pull`
 11. Run `mkdir ~/Applications ; open ~/Applications`
 11. If you already have Android Studio installed, (look in ~/Applications folder you just opened), you may open it and skip to step 20. Otherwise download [Android Studio](https://developer.android.com/studio/)
 12. Open `Android Studio.dmg` that you just downloaded.
-13. Copy the `Android Studio.app` into the folder  that opened in step 18. (Replace earlier version if any)
+13. Copy the `Android Studio.app` into the folder  that opened in step 17. (Replace earlier version if any)
 14. Eject and delete `Android Studio.dmg`
 15. Open `Android Studio.app` that you just copied.
 16. If you have had a previous installation of Android Studio, import settings from previous version, otherwise do not import settings.
