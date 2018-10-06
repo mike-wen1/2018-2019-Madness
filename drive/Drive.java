@@ -10,6 +10,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 public abstract class Drive extends OpMode {
     public abstract void init(); // Initialize Motors
-    public abstract void moveBot(int distance, int speed) throws InterruptedException; // Move the robot for distance rotations? at speed.
+    public abstract void moveBot(int time, int speed) throws InterruptedException; // Move the robot for distance rotations? at speed.
 }
 

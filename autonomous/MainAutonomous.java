@@ -30,6 +30,6 @@ public class MainAutonomous extends LinearOpMode {
         Drive d = Config.Drive.NEW(hardwareMap, telemetry); // Initialize all Assemblies required during the Autonomous program by the interface
 
         waitForStart();                                     // Wait for Start Button
-        d.moveBot(1000, 1);                 // Move the Robot (or something)
+        d.moveBot(1400,1);                 // Move the Robot (or something)
     }
 }

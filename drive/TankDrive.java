@@ -57,12 +57,12 @@ public class TankDrive extends Drive {
     }
 
     @Override
-    public void moveBot(int distance, int speed) throws InterruptedException {
-        frontLeft.setPower(speed);
-        frontRight.setPower(speed);
-        backLeft.setPower(speed);
-        backRight.setPower(speed);
-        Thread.sleep(2000);
+    public void moveBot(int time, int speed) throws InterruptedException {
+        frontLeft.setPower(-speed);
+        frontRight.setPower(-speed);
+        backLeft.setPower(-speed);
+        backRight.setPower(-speed);
+        Thread.sleep(time);
         frontRight.setPower(0);
         frontLeft.setPower(0);
         backLeft.setPower(0);
