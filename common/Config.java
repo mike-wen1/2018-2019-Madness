@@ -6,6 +6,7 @@ import com.sun.tools.javac.util.Context;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.drive.TankDrive;
+import org.firstinspires.ftc.teamcode.mineral.MineralScorer;
 import org.firstinspires.ftc.teamcode.visual.VisualImpl;
 
 import java.util.concurrent.Callable;
@@ -34,6 +35,19 @@ public final class Config {
         public static final String BACK_RIGHT = "back right";
         public static final String BACK_LEFT = "back left";
         public static final String FRONT_RIGHT = "front right";
+    }
+
+    public static final class Mineral {
+        public static MineralScorer NEW(HardwareMap hardwareMap, Telemetry telemetry) {
+            MineralScorer a = new MineralScorer();
+            a.hardwareMap = hardwareMap;
+            a.telemetry = telemetry;
+            a.init();
+            return a;
+        }
+
+        // Motor Constant
+        public static final String ARM_MOTOR = "arm motor";
     }
 
     public static final class Visual {    // Visual Assembly Configuration

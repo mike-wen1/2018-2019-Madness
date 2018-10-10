@@ -68,4 +68,17 @@ public class TankDrive extends Drive {
         backLeft.setPower(0);
         backRight.setPower(0);
     }
+
+    @Override
+    public void turnBot(int time, int speed) throws InterruptedException {
+        frontLeft.setPower(-speed);
+        backLeft.setPower(-speed);
+        frontRight.setPower(speed);
+        backRight.setPower(speed);
+        Thread.sleep(time);
+        frontRight.setPower(0);
+        frontLeft.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+    }
 }
