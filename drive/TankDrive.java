@@ -81,4 +81,20 @@ public class TankDrive extends Drive {
         backLeft.setPower(0);
         backRight.setPower(0);
     }
+
+    @Override
+    public void testMotors(int time, int speed) throws InterruptedException {
+        frontLeft.setPower(speed);
+        Thread.sleep(time);
+        frontLeft.setPower(0);
+        frontRight.setPower(speed);
+        Thread.sleep(time);
+        frontRight.setPower(0);
+        backLeft.setPower(speed);
+        Thread.sleep(time);
+        backLeft.setPower(0);
+        backRight.setPower(speed);
+        Thread.sleep(time);
+        backRight.setPower(0);
+    }
 }
