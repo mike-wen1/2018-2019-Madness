@@ -6,6 +6,7 @@ import com.sun.tools.javac.util.Context;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.drive.TankDrive;
+import org.firstinspires.ftc.teamcode.lifter.LinearLift;
 import org.firstinspires.ftc.teamcode.mineral.MineralScorer;
 import org.firstinspires.ftc.teamcode.visual.VisualImpl;
 
@@ -49,7 +50,18 @@ public final class Config {
         // Motor Constant
         public static final String ARM_MOTOR = "arm motor";
     }
+    public static final class Lift {
+        public static LinearLift NEW(HardwareMap hardwareMap, Telemetry telemetry) {
+            LinearLift a = new LinearLift();
+            a.hardwareMap = hardwareMap;
+            a.telemetry = telemetry;
+            a.init();
+            return a;
+        }
 
+        // Motor Constant
+        public static final String WINCH_MOTOR = "winch motor";
+    }
     public static final class Visual {    // Visual Assembly Configuration
         public static VisualImpl NEW(HardwareMap hardwareMap, Telemetry telemetry) { // Same as Drive, but doesn't require a HardwareMap.
             VisualImpl a = new VisualImpl(); // Create it

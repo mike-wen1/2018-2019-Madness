@@ -27,6 +27,7 @@ public class Main extends OpMode {
     public void init() {
         assemblies[0] = Config.Drive.NEW(hardwareMap, telemetry); // Initialize all OpModes independently (Config.{Assembly}.NEW())
         assemblies[1] = Config.Mineral.NEW(hardwareMap, telemetry);
+        assemblies[2] = Config.Lift.NEW(hardwareMap, telemetry);
     }
 
     @Override

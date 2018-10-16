@@ -54,7 +54,7 @@ public class VisualImpl extends Visual {
         params.cameraMonitorFeedback = VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
 
         // Create Vuforia instance with params: -- takes 1-2s
-        vuforia = ClassFactory.getInstance().createVuforia(params);
+        //vuforia = ClassFactory.getInstance().createVuforia(params);
 
         // Save an rgb565 image for further processing each frame and only save current frame
         Vuforia.setFrameFormat(PIXEL_FORMAT.RGB565, true);
