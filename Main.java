@@ -21,13 +21,14 @@ import org.firstinspires.ftc.teamcode.common.Config;
 @TeleOp(name = "Main Robot", group = "Main")
 public class Main extends OpMode {
 
-    private OpMode[] assemblies = new OpMode[2];                  // Increase the size of the array for the amount of Assemblies
+    private OpMode[] assemblies = new OpMode[4];                  // Increase the size of the array for the amount of Assemblies
 
     @Override
     public void init() {
         assemblies[0] = Config.Drive.NEW(hardwareMap, telemetry); // Initialize all OpModes independently (Config.{Assembly}.NEW())
         assemblies[1] = Config.Mineral.NEW(hardwareMap, telemetry);
         assemblies[2] = Config.Lift.NEW(hardwareMap, telemetry);
+        assemblies[3] = Config.Marker.NEW(hardwareMap, telemetry);
     }
 
     @Override

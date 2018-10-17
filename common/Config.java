@@ -1,16 +1,14 @@
 package org.firstinspires.ftc.teamcode.common;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.sun.tools.javac.util.Context;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.drive.TankDrive;
 import org.firstinspires.ftc.teamcode.lifter.LinearLift;
+import org.firstinspires.ftc.teamcode.marker.TeamMarker;
 import org.firstinspires.ftc.teamcode.mineral.MineralScorer;
 import org.firstinspires.ftc.teamcode.visual.VisualImpl;
-
-import java.util.concurrent.Callable;
 
 /**
  * Config: Configuration file to hold Motor Names and the current implementations of an assembly
@@ -50,6 +48,7 @@ public final class Config {
         // Motor Constant
         public static final String ARM_MOTOR = "arm motor";
     }
+
     public static final class Lift {
         public static LinearLift NEW(HardwareMap hardwareMap, Telemetry telemetry) {
             LinearLift a = new LinearLift();
@@ -62,6 +61,19 @@ public final class Config {
         // Motor Constant
         public static final String WINCH_MOTOR = "winch motor";
     }
+
+    public static final class Marker {
+        public static TeamMarker NEW(HardwareMap hardwareMap, Telemetry telemetry) {
+            TeamMarker a = new TeamMarker();
+            a.hardwareMap = hardwareMap;
+            a.telemetry = telemetry;
+            a.init();
+            return a;
+        }
+
+        public static final String MARKER_SERVO = "marker servo";
+    }
+
     public static final class Visual {    // Visual Assembly Configuration
         public static VisualImpl NEW(HardwareMap hardwareMap, Telemetry telemetry) { // Same as Drive, but doesn't require a HardwareMap.
             VisualImpl a = new VisualImpl(); // Create it
