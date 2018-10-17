@@ -21,6 +21,6 @@ public class TeamMarker extends Marker {
 
     @Override
     public void dropMarker() {
-
+        servo.setPosition(0);
     }
 }
