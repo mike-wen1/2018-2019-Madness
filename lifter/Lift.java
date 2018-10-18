@@ -10,5 +10,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 public abstract class Lift extends OpMode {
     public abstract void init(); // Initialize Motors
+    public abstract void lowerRobot();
 }
 

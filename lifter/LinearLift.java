@@ -28,11 +28,27 @@ public class LinearLift extends Lift {
         winchThing.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); // Set the motor to brake when stopped as opposed to coast.
         winchThing.setDirection(DcMotorSimple.Direction.REVERSE);         // Reverse the left motors because they are facing the opposite direction.
     }
-
+    @Override
+    public void lowerRobot(){
+        winchThing.setPower(-1);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        winchThing.setPower(0);
+    }
     @Override
     public void loop() {
-        winchThing.setPower(gamepad1.left_stick_y);
-
+        if (gamepad1.left_bumper){
+            winchThing.setPower(1);
+        }
+        else if (gamepad1.right_bumper){
+            winchThing.setPower(-1);
+        }
+        else {
+            winchThing.setPower(0);
+        }
     }
 
 
