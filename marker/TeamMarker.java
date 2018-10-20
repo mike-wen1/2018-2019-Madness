@@ -17,6 +17,7 @@ public class TeamMarker extends Marker {
 
     @Override
     public void loop() {
+
     }
 
     @Override

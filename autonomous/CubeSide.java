@@ -28,7 +28,7 @@ import org.firstinspires.ftc.teamcode.marker.Marker;
 
 @Autonomous                                                 // Comment out annotation to remove from list on Driver Station
 public class CubeSide extends LinearOpMode {
-    int turn360 = 2250;
+    int turn360 = 2500;
     @Override
     public void runOpMode() throws InterruptedException {   // This method is run by the OpMode Manager on init until the stop button is pressed.
         Drive d = Config.Drive.NEW(hardwareMap, telemetry); // Initialize all Assemblies required during the Autonomous program by the interface
@@ -38,16 +38,13 @@ public class CubeSide extends LinearOpMode {
         m.holdMarker();
 
         waitForStart();                                     // Wait for Start Button
-        // l.lowerRobot(); // Lowering Robot and orienting the Robot toward depot
-        // d.moveBot(100,1);
-        //d.turnBot(turn360/ 4 * 3, 1);
-        d.moveBot(900,1);                      // Move the Robot
+        d.moveBot(500,1);                      // Move the Robot
         Thread.sleep(5000);
         d.moveBot(700, 1);
         Thread.sleep(500);
         m.dropMarker();
         Thread.sleep(1500);
         d.turnBot(turn360 / 8 * 3, 1);
-        d.moveBot(2250,1);
+        d.moveBot(2500,1);
     }
 }

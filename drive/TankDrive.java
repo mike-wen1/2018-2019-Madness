@@ -27,37 +27,38 @@ public class TankDrive extends Drive {
     public void init() {
         frontLeft = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);    // Retrieve the motor from the hardwareMap with the name set in the Config class
         frontLeft.resetDeviceConfigurationForOpMode();                   // Reset the motor
-        frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);          // Set the runMode
+        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);          // Set the runMode
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); // Set the motor to brake when stopped as opposed to coast.
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);         // Reverse the left motors because they are facing the opposite direction.
 
         backRight = hardwareMap.dcMotor.get(Config.Drive.BACK_RIGHT);
         backRight.resetDeviceConfigurationForOpMode();
-        backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         backLeft = hardwareMap.dcMotor.get(Config.Drive.BACK_LEFT);
         backLeft.resetDeviceConfigurationForOpMode();
-        backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         frontRight = hardwareMap.dcMotor.get(Config.Drive.FRONT_RIGHT);
         frontRight.resetDeviceConfigurationForOpMode();
-        frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     @Override
     public void loop() {
-        frontLeft.setPower(gamepad1.left_stick_y);
-        frontRight.setPower(gamepad1.right_stick_y);
-        backLeft.setPower(gamepad1.left_stick_y);
-        backRight.setPower(gamepad1.right_stick_y);
+        frontLeft.setPower(-gamepad1.right_stick_y);
+        frontRight.setPower(-gamepad1.left_stick_y);
+        backLeft.setPower(-gamepad1.right_stick_y);
+        backRight.setPower(-gamepad1.left_stick_y);
     }
 
     @Override
     public void moveBot(int time, int speed) throws InterruptedException {
+
         frontLeft.setPower(-speed);
         frontRight.setPower(-speed);
         backLeft.setPower(-speed);
