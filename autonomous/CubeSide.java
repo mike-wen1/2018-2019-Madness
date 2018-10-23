@@ -3,13 +3,14 @@ package org.firstinspires.ftc.teamcode.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Config;
 import org.firstinspires.ftc.teamcode.LinearLift;
 import org.firstinspires.ftc.teamcode.TankDrive;
 import org.firstinspires.ftc.teamcode.TeamMarker;
 
 
 /**
- * Main Autonomous: The main autonomous program that will be run during the tournament.
+ * Main Autonomous: The main autonomous program that will be run during the tournament if we start on the side where we deposit the cubes.
  *
  * In order for this to be runnable from the Driver Station, it must extend either OpMode or LinearOpMode and be annotated with @Autonomous.
  * Because this will run linearly and not in a constant loop like a normal OpMode, we chose LinearOpMode.
@@ -27,22 +28,30 @@ import org.firstinspires.ftc.teamcode.TeamMarker;
 @Autonomous                                                 // Comment out annotation to remove from list on Driver Station
 public class CubeSide extends LinearOpMode {
     int turn360 = 2500;
-    @Override
+
     public void runOpMode() {   // This method is run by the OpMode Manager on init until the stop button is pressed.
         TankDrive tankDrive = new TankDrive(); // Initialize all Assemblies required during the Autonomous program by the interface
         TeamMarker teamMarker = new TeamMarker();
         LinearLift linearLift = new LinearLift();
 
-        holdMarker();
+        tankDrive.init();
+        teamMarker.init();
+        linearLift.init();
 
-        waitForStart();                                     // Wait for Start Button
-        d.moveBot(500,1);                      // Move the Robot
-        sleep(5000);
-        d.moveBot(700, 1);
-        sleep(500);
-        m.dropMarker();
-        sleep(1500);
-        d.turnBot(turn360 / 8 * 3, 1);
-        d.moveBot(2500,1);
+        teamMarker.holdMarker();
+
+        waitForStart();                                              // Wait for Start Button
+        try {
+            tankDrive.moveBot(500, 1);                      // Move the Robot
+            sleep(5000);
+            tankDrive.moveBot(700, 1);
+            sleep(500);
+            teamMarker.dropMarker();
+            sleep(1500);
+            tankDrive.turnBot(turn360 / 8 * 3, 1);
+            tankDrive.moveBot(2500, 1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
