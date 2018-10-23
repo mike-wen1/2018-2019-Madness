@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode.autonomous;
+package org.firstinspires.ftc.teamcode.OldFormat.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Config;
+import org.firstinspires.ftc.teamcode.OldFormat.common.Config;
 import org.firstinspires.ftc.teamcode.OldFormat.drive.Drive;
 
 /**

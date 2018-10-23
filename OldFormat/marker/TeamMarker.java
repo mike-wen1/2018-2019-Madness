@@ -1,10 +1,9 @@
-package org.firstinspires.ftc.teamcode.marker;
+package org.firstinspires.ftc.teamcode.OldFormat.marker;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.common.Config;
+import org.firstinspires.ftc.teamcode.OldFormat.common.Config;
 
 @TeleOp
 public class TeamMarker extends Marker {

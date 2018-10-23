@@ -1,10 +1,9 @@
-package org.firstinspires.ftc.teamcode.visual;
+package org.firstinspires.ftc.teamcode.OldFormat.visual;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.common.Config;
+import org.firstinspires.ftc.teamcode.OldFormat.common.Config;
 
 /**
  * MineralTest: An example of an Autonomous Test program

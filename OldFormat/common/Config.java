@@ -1,14 +1,13 @@
-package org.firstinspires.ftc.teamcode.common;
+package org.firstinspires.ftc.teamcode.OldFormat.common;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.drive.TankDrive;
-import org.firstinspires.ftc.teamcode.lifter.LinearLift;
-import org.firstinspires.ftc.teamcode.marker.TeamMarker;
-import org.firstinspires.ftc.teamcode.mineral.MineralScorer;
-import org.firstinspires.ftc.teamcode.visual.VisualImpl;
+import org.firstinspires.ftc.teamcode.OldFormat.drive.TankDrive;
+import org.firstinspires.ftc.teamcode.OldFormat.lifter.LinearLift;
+import org.firstinspires.ftc.teamcode.OldFormat.marker.TeamMarker;
+import org.firstinspires.ftc.teamcode.OldFormat.mineral.MineralScorer;
+import org.firstinspires.ftc.teamcode.OldFormat.visual.VisualImpl;
 
 /**
  * Config: Configuration file to hold Motor Names and the current implementations of an assembly

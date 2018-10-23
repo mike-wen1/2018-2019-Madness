@@ -3,11 +3,9 @@ package org.firstinspires.ftc.teamcode.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.common.Config;
-import org.firstinspires.ftc.teamcode.drive.Drive;
-import org.firstinspires.ftc.teamcode.lifter.Lift;
-import org.firstinspires.ftc.teamcode.marker.Marker;
-
+import org.firstinspires.ftc.teamcode.LinearLift;
+import org.firstinspires.ftc.teamcode.TankDrive;
+import org.firstinspires.ftc.teamcode.TeamMarker;
 
 
 /**
@@ -30,20 +28,20 @@ import org.firstinspires.ftc.teamcode.marker.Marker;
 public class CubeSide extends LinearOpMode {
     int turn360 = 2500;
     @Override
-    public void runOpMode() throws InterruptedException {   // This method is run by the OpMode Manager on init until the stop button is pressed.
-        Drive d = Config.Drive.NEW(hardwareMap, telemetry); // Initialize all Assemblies required during the Autonomous program by the interface
-        Marker m = Config.Marker.NEW(hardwareMap, telemetry);
-        Lift l = Config.Lift.NEW(hardwareMap, telemetry);
+    public void runOpMode() {   // This method is run by the OpMode Manager on init until the stop button is pressed.
+        TankDrive tankDrive = new TankDrive(); // Initialize all Assemblies required during the Autonomous program by the interface
+        TeamMarker teamMarker = new TeamMarker();
+        LinearLift linearLift = new LinearLift();
 
-        m.holdMarker();
+        holdMarker();
 
         waitForStart();                                     // Wait for Start Button
         d.moveBot(500,1);                      // Move the Robot
-        Thread.sleep(5000);
+        sleep(5000);
         d.moveBot(700, 1);
-        Thread.sleep(500);
+        sleep(500);
         m.dropMarker();
-        Thread.sleep(1500);
+        sleep(1500);
         d.turnBot(turn360 / 8 * 3, 1);
         d.moveBot(2500,1);
     }

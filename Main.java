@@ -4,8 +4,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.common.Config;
-
 /**
  * Main TeleOp for Tournament
  *
@@ -18,39 +16,77 @@ import org.firstinspires.ftc.teamcode.common.Config;
 /* ***** DO NOT EDIT ****** */
 /* ************************ */
 
-@TeleOp(name = "Main Robot", group = "Main")
+@TeleOp(name = "Main Robot2", group = "Main")
 public class Main extends OpMode {
 
     private OpMode[] assemblies = new OpMode[4];                  // Increase the size of the array for the amount of Assemblies
+    TankDrive tankDrive;
+    LinearLift linearLift;
+    MineralScorer mineralScorer;
+    TeamMarker teamMarker;
 
+    Main() {
+        tankDrive = new TankDrive();
+        tankDrive.hardwareMap = hardwareMap;
+        tankDrive.telemetry = telemetry;
+
+        linearLift = new LinearLift();
+        linearLift.hardwareMap = hardwareMap;
+        linearLift.telemetry = telemetry;
+
+        mineralScorer = new MineralScorer();
+        mineralScorer.hardwareMap = hardwareMap;
+        mineralScorer.telemetry = telemetry;
+
+        teamMarker = new TeamMarker();
+        teamMarker.hardwareMap = hardwareMap;
+        teamMarker.telemetry = telemetry;
+
+    }
     @Override
     public void init() {
-        assemblies[0] = Config.Drive.NEW(hardwareMap, telemetry); // Initialize all OpModes independently (Config.{Assembly}.NEW())
-        assemblies[1] = Config.Mineral.NEW(hardwareMap, telemetry);
-        assemblies[2] = Config.Lift.NEW(hardwareMap, telemetry);
-        assemblies[3] = Config.Marker.NEW(hardwareMap, telemetry);
+        tankDrive.init();
+        linearLift.init();
+        mineralScorer.init();
+        teamMarker.init();
+
     }
 
     @Override
     public void start() {
-        for (OpMode assembly : assemblies) {                      // Start All Registered Assemblies in the Array
-            assembly.start();
-        }
+        tankDrive.start();
+        linearLift.start();
+        mineralScorer.start();
+        teamMarker.start();
+
     }
 
     @Override
     public void loop() {
-        for (OpMode assembly : assemblies) {                      // Loop All Registered Assemblies in the Array
-            assembly.gamepad1 = gamepad1;
-            assembly.gamepad2 = gamepad2;
-            assembly.loop();
-        }
+
+        tankDrive.gamepad1 = gamepad1;
+        tankDrive.gamepad2 = gamepad2;
+        tankDrive.loop();
+
+        linearLift.gamepad1 = gamepad1;
+        linearLift.gamepad2 = gamepad2;
+        linearLift.loop();
+
+        mineralScorer.gamepad1 = gamepad1;
+        mineralScorer.gamepad2 = gamepad2;
+        mineralScorer.loop();
+
+        teamMarker.gamepad1 = gamepad1;
+        teamMarker.gamepad2 = gamepad2;
+        teamMarker.loop();
+
     }
 
     @Override
     public void stop() {
-        for (OpMode assembly : assemblies) {                      // Stop All Registered Assemblies in the Array
-            assembly.stop();
-        }
+        tankDrive.stop();
+        linearLift.stop();
+        mineralScorer.stop();
+        teamMarker.stop();
     }
 }

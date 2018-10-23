@@ -1,11 +1,10 @@
-package org.firstinspires.ftc.teamcode.lifter;
+package org.firstinspires.ftc.teamcode.OldFormat.lifter;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.common.Config;
-import org.firstinspires.ftc.teamcode.drive.Drive;
+import org.firstinspires.ftc.teamcode.OldFormat.common.Config;
 
 /**
  * TankDrive: A simple Drive implementation for a tank-drive robot.
