@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
-public class MotorTest extends BaseAutononomous {
+public class MotorTest extends BaseAutonomous {
 
     public void runOpMode()  {
         initialize();

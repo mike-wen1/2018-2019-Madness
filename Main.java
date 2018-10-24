@@ -1,25 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
-
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-/**
- * Main TeleOp for Tournament
- *
- * Runs many Assemblies for the Tournament
- *
- * Created by Gregory on 9/10/18.
- */
-
-/* ************************ */
-/* ***** DO NOT EDIT ****** */
-/* ************************ */
-
-@TeleOp(name = "Main Robot2", group = "Main")
+@TeleOp(name = "Main Robot", group = "Main")
 public class Main extends OpMode {
 
-    private OpMode[] assemblies = new OpMode[4];                  // Increase the size of the array for the amount of Assemblies
     private TankDrive tankDrive;
     private LinearLift linearLift;
     private MineralScorer mineralScorer;

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -7,7 +8,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Config;
 
-public class BaseAutononomous extends LinearOpMode {
+@Autonomous
+public class BaseAutonomous extends LinearOpMode {
     private DcMotor frontLeft;
     private DcMotor frontRight;
     private DcMotor backLeft;
@@ -19,11 +21,11 @@ public class BaseAutononomous extends LinearOpMode {
     public void runOpMode() {}
 
     void initialize() {
-        frontLeft = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);    // Retrieve the motor from the hardwareMap with the name set in the Config class
-        frontLeft.resetDeviceConfigurationForOpMode();                   // Reset the motor
-        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);          // Set the runMode
-        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); // Set the motor to brake when stopped as opposed to coast.
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);         // Reverse the left motors because they are facing the opposite direction.
+        frontLeft = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);
+        frontLeft.resetDeviceConfigurationForOpMode();
+        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         backRight = hardwareMap.dcMotor.get(Config.Drive.BACK_RIGHT);
         backRight.resetDeviceConfigurationForOpMode();
@@ -41,11 +43,11 @@ public class BaseAutononomous extends LinearOpMode {
         frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        winchMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);    // Retrieve the motor from the hardwareMap with the name set in the Config class
-        winchMotor.resetDeviceConfigurationForOpMode();                   // Reset the motor
-        winchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);          // Set the runMode
-        winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); // Set the motor to brake when stopped as opposed to coast.
-        winchMotor.setDirection(DcMotorSimple.Direction.REVERSE);         // Reverse the left motors because they are facing the opposite direction.
+        winchMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);
+        winchMotor.resetDeviceConfigurationForOpMode();
+        winchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        winchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         servo = hardwareMap.servo.get(Config.Marker.MARKER_SERVO);
     }

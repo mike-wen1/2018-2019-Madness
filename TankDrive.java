@@ -5,28 +5,20 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-/**
- * TankDrive: A simple Drive implementation for a tank-drive robot.
- *
- * Created by Gregory on 9/10/18.
- */
-
 @TeleOp
 public class TankDrive extends OpMode {
 
-    // Declare Motors
-    // DO NOT assign them to anything yet because hardwareMap is not necessarily defined until init runs.
-    public DcMotor frontLeft;
-    public DcMotor frontRight;
-    public DcMotor backLeft;
-    public DcMotor backRight;
+    private DcMotor frontLeft;
+    private DcMotor frontRight;
+    private DcMotor backLeft;
+    private DcMotor backRight;
 
     public void init() {
-        frontLeft = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);    // Retrieve the motor from the hardwareMap with the name set in the Config class
-        frontLeft.resetDeviceConfigurationForOpMode();                   // Reset the motor
-        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);          // Set the runMode
-        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); // Set the motor to brake when stopped as opposed to coast.
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);         // Reverse the left motors because they are facing the opposite direction.
+        frontLeft = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);
+        frontLeft.resetDeviceConfigurationForOpMode();
+        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         backRight = hardwareMap.dcMotor.get(Config.Drive.BACK_RIGHT);
         backRight.resetDeviceConfigurationForOpMode();

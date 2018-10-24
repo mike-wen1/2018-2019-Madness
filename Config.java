@@ -25,11 +25,11 @@ public final class Config {
         public static final String MARKER_SERVO = "marker servo";
     }
 
-    public static final class Visual {    // Visual Assembly Configuration
-        public static VisualImpl NEW(HardwareMap hardwareMap, Telemetry telemetry) { // Same as Drive, but doesn't require a HardwareMap.
-            VisualImpl a = new VisualImpl(); // Create it
-            a.telemetry = telemetry;         // Set the Hardware Map
-            a.init();                        // Initialize
+    public static final class Visual {
+        public static VisualImpl NEW(HardwareMap hardwareMap, Telemetry telemetry) {
+            VisualImpl a = new VisualImpl();
+            a.telemetry = telemetry;
+            a.init();
             return a;
         }
     }

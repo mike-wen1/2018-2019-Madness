@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 public class TeamMarker extends OpMode {
-    public Servo servo;
+    private Servo servo;
 
     public void init() {
         servo = hardwareMap.servo.get(Config.Marker.MARKER_SERVO);

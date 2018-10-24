@@ -5,15 +5,10 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-
-
-
 @TeleOp
 public class LinearLift extends OpMode {
 
-    // Declare Motors
-    // DO NOT assign them to anything yet because hardwareMap is not necessarily defined until init runs.
-    public DcMotor winchMotor;
+    private DcMotor winchMotor;
 
     public void init() {
         winchMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);    // Retrieve the motor from the hardwareMap with the name set in the Config class
