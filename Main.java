@@ -11,7 +11,7 @@ public class Main extends OpMode {
     private MineralScorer mineralScorer;
     private TeamMarker teamMarker;
 
-    Main() {
+    public Main() {
         tankDrive = new TankDrive();
         linearLift = new LinearLift();
         mineralScorer = new MineralScorer();
@@ -22,18 +22,19 @@ public class Main extends OpMode {
     public void init() {
         tankDrive.hardwareMap = hardwareMap;
         tankDrive.telemetry = telemetry;
-        tankDrive.init();
 
         linearLift.hardwareMap = hardwareMap;
         linearLift.telemetry = telemetry;
-        linearLift.init();
 
         mineralScorer.hardwareMap = hardwareMap;
         mineralScorer.telemetry = telemetry;
-        mineralScorer.init();
 
         teamMarker.hardwareMap = hardwareMap;
         teamMarker.telemetry = telemetry;
+
+        mineralScorer.init();
+        tankDrive.init();
+        linearLift.init();
         teamMarker.init();
     }
 

@@ -11,11 +11,11 @@ public class LinearLift extends OpMode {
     private DcMotor winchMotor;
 
     public void init() {
-        winchMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);    // Retrieve the motor from the hardwareMap with the name set in the Config class
-        winchMotor.resetDeviceConfigurationForOpMode();                   // Reset the motor
-        winchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);          // Set the runMode
-        winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); // Set the motor to brake when stopped as opposed to coast.
-        winchMotor.setDirection(DcMotorSimple.Direction.REVERSE);         // Reverse the left motors because they are facing the opposite direction.
+        winchMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);
+        winchMotor.resetDeviceConfigurationForOpMode();
+        winchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        winchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void loop() {
