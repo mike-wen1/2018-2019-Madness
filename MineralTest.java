@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  * MineralTest: An example of an Autonomous Test program
  * Displays the mineral view onscreen to test the detection of minerals by the phone camera.
  *
- * Created by Gregory on 9/14/18.
+ * Created by Ivy on 10/23/18.
  */
 
 @Autonomous
