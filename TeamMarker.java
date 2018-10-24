@@ -18,12 +18,4 @@ public class TeamMarker extends OpMode {
     public void loop() {
 
     }
-
-
-    public void dropMarker() {
-        servo.setPosition(1);
-    }
-    public void holdMarker() {
-        servo.setPosition(0);
-    }
 }

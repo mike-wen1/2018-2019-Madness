@@ -1,12 +1,7 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Config;
-import org.firstinspires.ftc.teamcode.LinearLift;
-import org.firstinspires.ftc.teamcode.TankDrive;
-import org.firstinspires.ftc.teamcode.TeamMarker;
 
 
 /**
@@ -26,32 +21,29 @@ import org.firstinspires.ftc.teamcode.TeamMarker;
  */
 
 @Autonomous                                                 // Comment out annotation to remove from list on Driver Station
-public class CubeSide extends LinearOpMode {
+public class CubeSide extends BaseAutononomous {
     int turn360 = 2500;
 
-    public void runOpMode() {   // This method is run by the OpMode Manager on init until the stop button is pressed.
-        TankDrive tankDrive = new TankDrive(); // Initialize all Assemblies required during the Autonomous program by the interface
-        TeamMarker teamMarker = new TeamMarker();
-        LinearLift linearLift = new LinearLift();
+    public void runOpMode() {
 
-        tankDrive.init();
-        teamMarker.init();
-        linearLift.init();
+        initialize();
 
-        teamMarker.holdMarker();
+        holdMarker();
 
         waitForStart();                                              // Wait for Start Button
-        try {
-            tankDrive.moveBot(500, 1);                      // Move the Robot
+
+            moveBot(500, 1);                      // Move the Robot
             sleep(5000);
-            tankDrive.moveBot(700, 1);
+            moveBot(700, 1);
             sleep(500);
-            teamMarker.dropMarker();
+
+            dropMarker();
+
             sleep(1500);
-            tankDrive.turnBot(turn360 / 8 * 3, 1);
-            tankDrive.moveBot(2500, 1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+            turnBot(turn360 / 8 * 3, 1);
+            moveBot(2500, 1);
     }
+
+
 }

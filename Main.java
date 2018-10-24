@@ -20,36 +20,35 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class Main extends OpMode {
 
     private OpMode[] assemblies = new OpMode[4];                  // Increase the size of the array for the amount of Assemblies
-    TankDrive tankDrive;
-    LinearLift linearLift;
-    MineralScorer mineralScorer;
-    TeamMarker teamMarker;
+    private TankDrive tankDrive;
+    private LinearLift linearLift;
+    private MineralScorer mineralScorer;
+    private TeamMarker teamMarker;
 
     Main() {
         tankDrive = new TankDrive();
-        tankDrive.hardwareMap = hardwareMap;
-        tankDrive.telemetry = telemetry;
-
         linearLift = new LinearLift();
-        linearLift.hardwareMap = hardwareMap;
-        linearLift.telemetry = telemetry;
-
         mineralScorer = new MineralScorer();
-        mineralScorer.hardwareMap = hardwareMap;
-        mineralScorer.telemetry = telemetry;
-
         teamMarker = new TeamMarker();
-        teamMarker.hardwareMap = hardwareMap;
-        teamMarker.telemetry = telemetry;
-
     }
+
     @Override
     public void init() {
+        tankDrive.hardwareMap = hardwareMap;
+        tankDrive.telemetry = telemetry;
         tankDrive.init();
-        linearLift.init();
-        mineralScorer.init();
-        teamMarker.init();
 
+        linearLift.hardwareMap = hardwareMap;
+        linearLift.telemetry = telemetry;
+        linearLift.init();
+
+        mineralScorer.hardwareMap = hardwareMap;
+        mineralScorer.telemetry = telemetry;
+        mineralScorer.init();
+
+        teamMarker.hardwareMap = hardwareMap;
+        teamMarker.telemetry = telemetry;
+        teamMarker.init();
     }
 
     @Override
@@ -58,12 +57,10 @@ public class Main extends OpMode {
         linearLift.start();
         mineralScorer.start();
         teamMarker.start();
-
     }
 
     @Override
     public void loop() {
-
         tankDrive.gamepad1 = gamepad1;
         tankDrive.gamepad2 = gamepad2;
         tankDrive.loop();
@@ -79,7 +76,6 @@ public class Main extends OpMode {
         teamMarker.gamepad1 = gamepad1;
         teamMarker.gamepad2 = gamepad2;
         teamMarker.loop();
-
     }
 
     @Override

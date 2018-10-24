@@ -53,44 +53,4 @@ public class TankDrive extends OpMode {
         backLeft.setPower(-gamepad1.right_stick_y);
         backRight.setPower(-gamepad1.left_stick_y);
     }
-
-    public void moveBot(int time, int speed) throws InterruptedException {
-
-        frontLeft.setPower(-speed);
-        frontRight.setPower(-speed);
-        backLeft.setPower(-speed);
-        backRight.setPower(-speed);
-        Thread.sleep(time);
-        frontRight.setPower(0);
-        frontLeft.setPower(0);
-        backLeft.setPower(0);
-        backRight.setPower(0);
-    }
-
-    public void turnBot(int time, int speed) throws InterruptedException {
-        frontLeft.setPower(-speed);
-        backLeft.setPower(-speed);
-        frontRight.setPower(speed);
-        backRight.setPower(speed);
-        Thread.sleep(time);
-        frontRight.setPower(0);
-        frontLeft.setPower(0);
-        backLeft.setPower(0);
-        backRight.setPower(0);
-    }
-
-    public void testMotors(int time, int speed) throws InterruptedException {
-        frontLeft.setPower(speed);
-        Thread.sleep(time);
-        frontLeft.setPower(0);
-        frontRight.setPower(speed);
-        Thread.sleep(time);
-        frontRight.setPower(0);
-        backLeft.setPower(speed);
-        Thread.sleep(time);
-        backLeft.setPower(0);
-        backRight.setPower(speed);
-        Thread.sleep(time);
-        backRight.setPower(0);
-    }
 }
