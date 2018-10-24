@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.OldFormat;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -17,7 +18,7 @@ import org.firstinspires.ftc.teamcode.OldFormat.common.Config;
 /* ************************ */
 /* ***** DO NOT EDIT ****** */
 /* ************************ */
-
+@Disabled
 @TeleOp(name = "Main Robot", group = "Main")
 public class Main extends OpMode {
 

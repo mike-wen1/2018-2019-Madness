@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.OldFormat.drive;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 /**
@@ -8,6 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
  * Created by Gregory on 9/10/18.
  */
 
+@Disabled
 public abstract class Drive extends OpMode {
     public abstract void init(); // Initialize Motors
     public abstract void moveBot(int time, int speed) throws InterruptedException; // Move the robot for distance rotations? at speed.

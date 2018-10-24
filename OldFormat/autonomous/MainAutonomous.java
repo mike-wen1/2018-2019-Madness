@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.OldFormat.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.OldFormat.common.Config;
@@ -22,6 +23,7 @@ import org.firstinspires.ftc.teamcode.OldFormat.drive.Drive;
  * Created by Gregory on 9/10/18.
  */
 
+@Disabled
 @Autonomous                                                 // Comment out annotation to remove from list on Driver Station
 public class MainAutonomous extends LinearOpMode {
 
