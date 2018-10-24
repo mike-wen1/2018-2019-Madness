@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 
-
 /**
  * Main Autonomous: The main autonomous program that will be run during the tournament if we start on the side where we deposit the cubes.
  *
@@ -30,19 +29,20 @@ public class CubeSide extends BaseAutononomous {
 
         holdMarker();
 
-        waitForStart();                                              // Wait for Start Button
+        waitForStart();
 
-            moveBot(500, 1);                      // Move the Robot
-            sleep(5000);
-            moveBot(700, 1);
-            sleep(500);
+        moveBot(500, 1);
+        sleep(5000);
+        moveBot(700, 1);
+        sleep(500);
 
-            dropMarker();
+        dropMarker();
 
-            sleep(1500);
+        sleep(1500);
 
-            turnBot(turn360 / 8 * 3, 1);
-            moveBot(2500, 1);
+        turnBot(turn360 / 8 * 3, 1);
+        moveBot(2500, 1);
+
     }
 
 

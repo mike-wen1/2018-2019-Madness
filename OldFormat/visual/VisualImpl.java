@@ -7,6 +7,7 @@ import android.os.Environment;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.vuforia.PIXEL_FORMAT;
 import com.vuforia.Vuforia;
 
@@ -23,7 +24,7 @@ import java.io.FileOutputStream;
  *
  * Created by Gregory on 9/14/18.
  */
-
+@Disabled
 public class VisualImpl extends Visual {
 
     private VuforiaLocalizer vuforia;

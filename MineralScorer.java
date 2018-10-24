@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp
 public class MineralScorer extends OpMode {
-    private DcMotor armMotor;
+    public DcMotor armMotor;
 
     public void init() {
         armMotor = hardwareMap.dcMotor.get(Config.Mineral.ARM_MOTOR);

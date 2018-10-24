@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.OldFormat.common;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -17,7 +18,7 @@ import org.firstinspires.ftc.teamcode.OldFormat.visual.VisualImpl;
  *
  * Created by Gregory on 9/10/18.
  */
-
+@Disabled
 public final class Config {
     public static final class Drive {     // Drive Assembly Configuration
         public static TankDrive NEW(HardwareMap hardwareMap, Telemetry telemetry) { // Return a TankDrive as the current Drive

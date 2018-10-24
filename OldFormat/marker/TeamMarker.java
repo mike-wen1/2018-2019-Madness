@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.OldFormat.marker;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.OldFormat.common.Config;
 
+@Disabled
 @TeleOp
 public class TeamMarker extends Marker {
     private Servo servo;

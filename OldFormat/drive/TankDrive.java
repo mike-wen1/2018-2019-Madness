@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.OldFormat.drive;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -11,7 +12,7 @@ import org.firstinspires.ftc.teamcode.OldFormat.common.Config;
  *
  * Created by Gregory on 9/10/18.
  */
-
+@Disabled
 @TeleOp
 public class TankDrive extends Drive {
 

@@ -5,8 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.OldFormat.drive.Drive;
-
 /**
  * TankDrive: A simple Drive implementation for a tank-drive robot.
  *
@@ -18,10 +16,10 @@ public class TankDrive extends OpMode {
 
     // Declare Motors
     // DO NOT assign them to anything yet because hardwareMap is not necessarily defined until init runs.
-    private DcMotor frontLeft;
-    private DcMotor frontRight;
-    private DcMotor backLeft;
-    private DcMotor backRight;
+    public DcMotor frontLeft;
+    public DcMotor frontRight;
+    public DcMotor backLeft;
+    public DcMotor backRight;
 
     public void init() {
         frontLeft = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);    // Retrieve the motor from the hardwareMap with the name set in the Config class

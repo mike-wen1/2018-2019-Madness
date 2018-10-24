@@ -13,7 +13,7 @@ public class LinearLift extends OpMode {
 
     // Declare Motors
     // DO NOT assign them to anything yet because hardwareMap is not necessarily defined until init runs.
-    private DcMotor winchMotor;
+    public DcMotor winchMotor;
 
     public void init() {
         winchMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);    // Retrieve the motor from the hardwareMap with the name set in the Config class
