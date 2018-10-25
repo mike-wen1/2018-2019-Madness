@@ -22,7 +22,7 @@ public class CubeSide extends BaseAutonomous {
         moveBot(100, 1);
 
         double waitUntil = System.nanoTime() + (1000 * 1000000);
-        while (seesGold() && (System.nanoTime() < waitUntil)) {
+        while (!seesGold() || (System.nanoTime() < waitUntil)) {
             moveBot(1000,1);
         }
 
