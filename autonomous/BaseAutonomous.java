@@ -16,6 +16,8 @@ public class BaseAutonomous extends LinearOpMode {
 
     private Servo servo;
 
+    private Visual visual;
+
     public void runOpMode() {}
 
     void initialize() {
@@ -48,9 +50,32 @@ public class BaseAutonomous extends LinearOpMode {
         winchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         servo = hardwareMap.servo.get(Config.Marker.MARKER_SERVO);
+
+        Visual.DEBUG = true;
+        visual = new Visual();
+        visual.telemetry = telemetry;
+        visual.hardwareMap = hardwareMap;
+        visual.init();
+
+    }
+    /*void moveBot(double degrees)  {
+
+        int distance = (int)(degrees * 360.0 / 1100.0);
+        frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+        frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+        backLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+        backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
     }
 
-    void moveBot(int time, int speed)  {
+    void turnBot(int degrees)  {
+        int distance = (int)(degrees * 360.0 / 1100.0);
+        frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+        backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+    }
+    */
+    void moveBot(int time, double speed)  {
         frontLeft.setPower(-speed);
         frontRight.setPower(-speed);
         backLeft.setPower(-speed);
@@ -62,7 +87,7 @@ public class BaseAutonomous extends LinearOpMode {
         backRight.setPower(0);
     }
 
-    void turnBot(int time, int speed)  {
+    void turnBot(int time, double speed)  {
         frontLeft.setPower(-speed);
         backLeft.setPower(-speed);
         frontRight.setPower(speed);
@@ -98,5 +123,14 @@ public class BaseAutonomous extends LinearOpMode {
     void holdMarker() { servo.setPosition(0); }
 
     void dropMarker() { servo.setPosition(1); }
+
+    boolean seesGold() {
+        try {
+            return visual.isGoldMineral(false) == 1;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }
