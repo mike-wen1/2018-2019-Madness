@@ -13,6 +13,7 @@ public class BaseAutonomous extends LinearOpMode {
     private DcMotor backLeft;
     private DcMotor backRight;
     private DcMotor winchMotor;
+    private DcMotor extensionMotor;
 
     private Servo servo;
 
@@ -49,6 +50,12 @@ public class BaseAutonomous extends LinearOpMode {
         winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         winchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        extensionMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);
+        extensionMotor.resetDeviceConfigurationForOpMode();
+        extensionMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        extensionMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        extensionMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
         servo = hardwareMap.servo.get(Config.Marker.MARKER_SERVO);
 
         Visual.DEBUG = true;
@@ -58,23 +65,49 @@ public class BaseAutonomous extends LinearOpMode {
         visual.init();
 
     }
-    /*void moveBot(double degrees)  {
-
-        int distance = (int)(degrees * 360.0 / 1100.0);
-        frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-        frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-        backLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-        backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+    /*void moveBot(double dist, int power)  {
+        int distance = -1 * (int)(dist);
+        if (power > 0) {
+            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+            frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+            backLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+            backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+        }
+        else if (power < 0) {
+            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+            frontRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+            backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+            backRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        }
+        frontRight.setPower(power);
+        frontLeft.setPower(power);
+        backRight.setPower(power);
+        backLeft.setPower(power);
     }
+    void turnBot(int dist, int power)  {
+        int distance = dist;
+        if (power > 0) {
+            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+            frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+            backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+            backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+            frontLeft.setPower(-power);
+            frontRight.setPower(power);
+            backRight.setPower(power);
+            backLeft.setPower(-power);
+        }
+        else if (power < 0){
+            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+            frontRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+            backLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+            backRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+            frontLeft.setPower(power);
+            frontRight.setPower(-power);
+            backRight.setPower(-power);
+            backLeft.setPower(power);
+        }
+    }*/
 
-    void turnBot(int degrees)  {
-        int distance = (int)(degrees * 360.0 / 1100.0);
-        frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-        frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-        backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-        backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-    }
-    */
     void moveBot(int time, double speed)  {
         frontLeft.setPower(-speed);
         frontRight.setPower(-speed);

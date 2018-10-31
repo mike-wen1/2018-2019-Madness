@@ -9,10 +9,16 @@ import org.firstinspires.ftc.teamcode.Config;
 @TeleOp
 public class MineralScorer extends OpMode {
     private DcMotor armMotor;
+    private DcMotor extensionMotor;
 
     public void init() {
         armMotor = hardwareMap.dcMotor.get(Config.Mineral.ARM_MOTOR);
         armMotor.resetDeviceConfigurationForOpMode();
+        armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        extensionMotor = hardwareMap.dcMotor.get(Config.Mineral.EXTENSION_MOTOR);
+        extensionMotor.resetDeviceConfigurationForOpMode();
         armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
@@ -26,6 +32,15 @@ public class MineralScorer extends OpMode {
         }
         else {
             armMotor.setPower(0);
+        }
+        if (gamepad1.left_trigger > 0.1) {
+            extensionMotor.setPower(-1);
+        }
+        else if (gamepad1.right_trigger > 0.1) {
+            extensionMotor.setPower(1);
+        }
+        else {
+            extensionMotor.setPower(0);
         }
     }
 }

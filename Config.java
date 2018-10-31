@@ -1,10 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
-
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.OldFormat.visual.VisualImpl;
-
 public final class Config {
     public static final class Drive {
         public static final String FRONT_LEFT = "front left";
@@ -15,6 +10,7 @@ public final class Config {
 
     public static final class Mineral {
         public static final String ARM_MOTOR = "arm motor";
+        public static final String EXTENSION_MOTOR = "extension motor";
     }
 
     public static final class Lift {
@@ -23,15 +19,6 @@ public final class Config {
 
     public static final class Marker {
         public static final String MARKER_SERVO = "marker servo";
-    }
-
-    public static final class Visual {
-        public static VisualImpl NEW(HardwareMap hardwareMap, Telemetry telemetry) {
-            VisualImpl a = new VisualImpl();
-            a.telemetry = telemetry;
-            a.init();
-            return a;
-        }
     }
 }
 
