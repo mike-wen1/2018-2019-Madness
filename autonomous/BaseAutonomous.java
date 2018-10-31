@@ -65,8 +65,8 @@ public class BaseAutonomous extends LinearOpMode {
         visual.init();
 
     }
-    /*void moveBot(double dist, int power)  {
-        int distance = -1 * (int)(dist);
+    void moveBotEncoders(int dist, int power)  {
+        int distance = dist;
         if (power > 0) {
             frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
             frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
@@ -84,7 +84,7 @@ public class BaseAutonomous extends LinearOpMode {
         backRight.setPower(power);
         backLeft.setPower(power);
     }
-    void turnBot(int dist, int power)  {
+    void turnBotEncoders(int dist, int power)  {
         int distance = dist;
         if (power > 0) {
             frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
@@ -106,7 +106,7 @@ public class BaseAutonomous extends LinearOpMode {
             backRight.setPower(-power);
             backLeft.setPower(power);
         }
-    }*/
+    }
 
     void moveBot(int time, double speed)  {
         frontLeft.setPower(-speed);
