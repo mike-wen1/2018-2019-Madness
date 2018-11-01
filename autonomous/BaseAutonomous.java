@@ -8,12 +8,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.Config;
 
 public class BaseAutonomous extends LinearOpMode {
-    private DcMotor frontLeft;
-    private DcMotor frontRight;
-    private DcMotor backLeft;
-    private DcMotor backRight;
-    private DcMotor winchMotor;
-    private DcMotor extensionMotor;
+    protected DcMotor frontLeft;
+    protected DcMotor frontRight;
+    protected DcMotor backLeft;
+    protected DcMotor backRight;
+    protected DcMotor winchMotor;
+    //private DcMotor extensionMotor;
 
     private Servo servo;
 
@@ -50,11 +50,11 @@ public class BaseAutonomous extends LinearOpMode {
         winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         winchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        extensionMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);
+        /*extensionMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);
         extensionMotor.resetDeviceConfigurationForOpMode();
         extensionMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         extensionMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        extensionMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        extensionMotor.setDirection(DcMotorSimple.Direction.REVERSE);*/
 
         servo = hardwareMap.servo.get(Config.Marker.MARKER_SERVO);
 
@@ -68,21 +68,21 @@ public class BaseAutonomous extends LinearOpMode {
     void moveBotEncoders(int dist, int power)  {
         int distance = dist;
         if (power > 0) {
-            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-            frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-            backLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-            backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-        }
-        else if (power < 0) {
             frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
             frontRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
             backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
             backRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
         }
-        frontRight.setPower(power);
-        frontLeft.setPower(power);
-        backRight.setPower(power);
-        backLeft.setPower(power);
+        else if (power < 0) {
+            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+            frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+            backLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+            backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+        }
+        frontRight.setPower(-power);
+        frontLeft.setPower(-power);
+        backRight.setPower(-power);
+        backLeft.setPower(-power);
     }
     void turnBotEncoders(int dist, int power)  {
         int distance = dist;
