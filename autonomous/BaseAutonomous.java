@@ -24,24 +24,24 @@ public class BaseAutonomous extends LinearOpMode {
     void initialize() {
         frontLeft = hardwareMap.dcMotor.get(Config.Drive.FRONT_LEFT);
         frontLeft.resetDeviceConfigurationForOpMode();
-        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         backRight = hardwareMap.dcMotor.get(Config.Drive.BACK_RIGHT);
         backRight.resetDeviceConfigurationForOpMode();
-        backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         backLeft = hardwareMap.dcMotor.get(Config.Drive.BACK_LEFT);
         backLeft.resetDeviceConfigurationForOpMode();
-        backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         frontRight = hardwareMap.dcMotor.get(Config.Drive.FRONT_RIGHT);
         frontRight.resetDeviceConfigurationForOpMode();
-        frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         winchMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);
