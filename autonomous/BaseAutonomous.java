@@ -13,7 +13,7 @@ public class BaseAutonomous extends LinearOpMode {
     protected DcMotor backLeft;
     protected DcMotor backRight;
     protected DcMotor winchMotor;
-    //private DcMotor extensionMotor;
+    private DcMotor extensionMotor;
 
     private Servo servo;
 
@@ -50,11 +50,11 @@ public class BaseAutonomous extends LinearOpMode {
         winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         winchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        /*extensionMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);
+        extensionMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);
         extensionMotor.resetDeviceConfigurationForOpMode();
         extensionMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         extensionMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        extensionMotor.setDirection(DcMotorSimple.Direction.REVERSE);*/
+        extensionMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         servo = hardwareMap.servo.get(Config.Marker.MARKER_SERVO);
 
@@ -65,47 +65,25 @@ public class BaseAutonomous extends LinearOpMode {
         visual.init();
 
     }
-    void moveBotEncoders(int dist, int power)  {
-        int distance = dist;
-        if (power > 0) {
-            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-            frontRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-            backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-            backRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-        }
-        else if (power < 0) {
-            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-            frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-            backLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-            backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-        }
-        frontRight.setPower(-power);
-        frontLeft.setPower(-power);
-        backRight.setPower(-power);
-        backLeft.setPower(-power);
+    void moveBotEncoders(int distance, int power)  {
+        frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        frontRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        backRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        frontRight.setPower(power);
+        frontLeft.setPower(power);
+        backRight.setPower(power);
+        backLeft.setPower(power);
     }
-    void turnBotEncoders(int dist, int power)  {
-        int distance = dist;
-        if (power > 0) {
-            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-            frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-            backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-            backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-            frontLeft.setPower(-power);
-            frontRight.setPower(power);
-            backRight.setPower(power);
-            backLeft.setPower(-power);
-        }
-        else if (power < 0){
-            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-            frontRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-            backLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-            backRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-            frontLeft.setPower(power);
-            frontRight.setPower(-power);
-            backRight.setPower(-power);
-            backLeft.setPower(power);
-        }
+    void turnBotEncoders(int distance, int power)  {
+        frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+        backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+        frontLeft.setPower(power);
+        frontRight.setPower(power);
+        backRight.setPower(power);
+        backLeft.setPower(power);
     }
 
     void moveBot(int time, double speed)  {

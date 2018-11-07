@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
 public class CubeSideEncoders extends BaseAutonomous {
-    int turn360 = 2400;
+    int turn360 = 7000;
 
     public void runOpMode() {
 
@@ -13,7 +13,9 @@ public class CubeSideEncoders extends BaseAutonomous {
         holdMarker();
 
         waitForStart();
-        moveBotEncoders(1000, 1);
+        moveBotEncoders(1100, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {
+        }
         sleep(1000);
         // Visual
         /*turnBotEncoders(turn360/4, -1);
@@ -31,16 +33,25 @@ public class CubeSideEncoders extends BaseAutonomous {
 
         turnBotEncoders(turn360_7/4, 0.7);*/
 
-        moveBotEncoders(1500, 1);
+        moveBotEncoders(2500, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {
+        }
         sleep(1000);
 
         dropMarker();
         sleep(500);
 
-        moveBotEncoders(300, -1);
+        moveBotEncoders(-300, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {
+        }
         sleep(1500);
 
         turnBotEncoders(turn360 / 8 * 3, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {
+        }
+        sleep(500);
         moveBotEncoders(6000, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {
+        }
     }
 }

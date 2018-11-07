@@ -10,7 +10,7 @@ public final class Config {
 
     public static final class Mineral {
         public static final String ARM_MOTOR = "arm motor";
-        //public static final String EXTENSION_MOTOR = "extension motor";
+        public static final String EXTENSION_MOTOR = "extension motor";
     }
 
     public static final class Lift {
