@@ -46,7 +46,7 @@ public class BaseAutonomous extends LinearOpMode {
 
         winchMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);
         winchMotor.resetDeviceConfigurationForOpMode();
-        winchMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        winchMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         winchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -66,26 +66,29 @@ public class BaseAutonomous extends LinearOpMode {
 
     }
     void moveBotEncoders(int distance, int power)  {
+        // ** Will be different for horizontal movement
         frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-        frontRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-        backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-        backRight.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        frontRight.setTargetPosition(frontRight.getCurrentPosition() - distance);
+        backLeft.setTargetPosition(backLeft.getCurrentPosition() - distance);
+        backRight.setTargetPosition(backRight.getCurrentPosition() - distance);
         frontRight.setPower(power);
         frontLeft.setPower(power);
         backRight.setPower(power);
         backLeft.setPower(power);
     }
     void turnBotEncoders(int distance, int power)  {
+        // ** May be changed
         frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-        frontRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
-        backLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
-        backRight.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+        frontRight.setTargetPosition(frontRight.getCurrentPosition() + distance);
+        backLeft.setTargetPosition(backLeft.getCurrentPosition() - distance);
+        backRight.setTargetPosition(backRight.getCurrentPosition() + distance);
         frontLeft.setPower(power);
         frontRight.setPower(power);
         backRight.setPower(power);
         backLeft.setPower(power);
     }
 
+    // --NOT USED
     void moveBot(int time, double speed)  {
         frontLeft.setPower(-speed);
         frontRight.setPower(-speed);
@@ -125,16 +128,18 @@ public class BaseAutonomous extends LinearOpMode {
         backRight.setPower(0);
     }
 
-    void lowerRobot(){
-        winchMotor.setPower(-1);
-        sleep(500);
-        winchMotor.setPower(0);
-    }
-
     void holdMarker() { servo.setPosition(0); }
 
     void dropMarker() { servo.setPosition(1); }
 
+    void release(int distance, int power) {
+        winchMotor.setTargetPosition(winchMotor.getCurrentPosition() + distance);
+        winchMotor.setPower(power);
+        // ** Move horizontally
+        moveEncoderHorizontal(200, 1);
+    }
+
+    // ** Not used yet
     boolean seesGold() {
         try {
             return visual.isGoldMineral(false) == 1;
@@ -144,4 +149,25 @@ public class BaseAutonomous extends LinearOpMode {
         }
     }
 
+    // --NEW DRIVETRAIN
+    void moveEncoderVertical (int distance, int power) {
+        frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+        frontRight.setTargetPosition(frontRight.getCurrentPosition() - distance);
+        backLeft.setTargetPosition(backLeft.getCurrentPosition() - distance);
+        backRight.setTargetPosition(backRight.getCurrentPosition() - distance);
+        frontRight.setPower(power);
+        frontLeft.setPower(power);
+        backRight.setPower(power);
+        backLeft.setPower(power);
+    }
+    void moveEncoderHorizontal (int distance, int power) {
+        frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
+        backLeft.setTargetPosition(backLeft.getCurrentPosition() - distance);
+        frontRight.setTargetPosition(frontRight.getCurrentPosition() - distance);
+        backRight.setTargetPosition(backRight.getCurrentPosition() + distance);
+        frontRight.setPower(power);
+        frontLeft.setPower(power);
+        backRight.setPower(power);
+        backLeft.setPower(power);
+    }
 }

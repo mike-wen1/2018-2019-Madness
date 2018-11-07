@@ -13,7 +13,7 @@ public class CubeSideEncoders extends BaseAutonomous {
         holdMarker();
 
         waitForStart();
-        moveBotEncoders(1100, 1);
+        moveBotEncoders(1200, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {
         }
         sleep(1000);
@@ -33,7 +33,7 @@ public class CubeSideEncoders extends BaseAutonomous {
 
         turnBotEncoders(turn360_7/4, 0.7);*/
 
-        moveBotEncoders(2500, 1);
+        moveBotEncoders(2800, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {
         }
         sleep(1000);
