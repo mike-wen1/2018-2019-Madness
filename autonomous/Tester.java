@@ -7,14 +7,11 @@ public class Tester extends BaseAutonomous {
 
         initialize();
         waitForStart();
-        frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - 2000);
-        telemetry.addData("TargetPos: ", frontLeft.getCurrentPosition() - 2000);
+        telemetry.addData("Init Pos", winchMotor.getCurrentPosition());
         telemetry.update();
-        sleep(5000);
-        frontLeft.setPower(1);
-        while (frontLeft.isBusy() && !isStopRequested()) {
-            int currPos = frontLeft.getCurrentPosition();
-            telemetry.addData("Curr Position: ", currPos);
+        //release(1);
+        while (winchMotor.isBusy() && !isStopRequested()) {
+            telemetry.addData("Curr Pos", winchMotor.getCurrentPosition());
             telemetry.update();
         }
     }

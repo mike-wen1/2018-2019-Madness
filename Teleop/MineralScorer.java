@@ -19,8 +19,8 @@ public class MineralScorer extends OpMode {
 
         extensionMotor = hardwareMap.dcMotor.get(Config.Mineral.EXTENSION_MOTOR);
         extensionMotor.resetDeviceConfigurationForOpMode();
-        armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        extensionMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        extensionMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void loop() {

@@ -13,7 +13,7 @@ public class BaseAutonomous extends LinearOpMode {
     protected DcMotor backLeft;
     protected DcMotor backRight;
     protected DcMotor winchMotor;
-    private DcMotor extensionMotor;
+    protected DcMotor extensionMotor;
 
     private Servo servo;
 
@@ -50,7 +50,7 @@ public class BaseAutonomous extends LinearOpMode {
         winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         winchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        extensionMotor = hardwareMap.dcMotor.get(Config.Lift.WINCH_MOTOR);
+        extensionMotor = hardwareMap.dcMotor.get(Config.Mineral.EXTENSION_MOTOR);
         extensionMotor.resetDeviceConfigurationForOpMode();
         extensionMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         extensionMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -132,11 +132,9 @@ public class BaseAutonomous extends LinearOpMode {
 
     void dropMarker() { servo.setPosition(1); }
 
-    void release(int distance, int power) {
-        winchMotor.setTargetPosition(winchMotor.getCurrentPosition() + distance);
+    void setHeight(int target, int power) {
+        winchMotor.setTargetPosition(target);
         winchMotor.setPower(power);
-        // ** Move horizontally
-        moveEncoderHorizontal(200, 1);
     }
 
     // ** Not used yet

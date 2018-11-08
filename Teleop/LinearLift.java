@@ -21,6 +21,8 @@ public class LinearLift extends OpMode {
     }
 
     public void loop() {
+        telemetry.addData("curr pos", winchMotor.getCurrentPosition());
+        telemetry.update();
         if (gamepad1.left_bumper){
             winchMotor.setPower(1);
         }
