@@ -10,9 +10,6 @@ public class Tester extends BaseAutonomous {
         telemetry.addData("Init Pos", winchMotor.getCurrentPosition());
         telemetry.update();
         //release(1);
-        while (winchMotor.isBusy() && !isStopRequested()) {
-            telemetry.addData("Curr Pos", winchMotor.getCurrentPosition());
-            telemetry.update();
-        }
+        turnBotEncoders(6500/4, 1);
     }
 }

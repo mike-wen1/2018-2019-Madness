@@ -4,7 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
 public class CubeSideEncoders extends BaseAutonomous {
-    int turn360 = 6500;
+    int turn360 = 6650;
+    int start;
 
     public void runOpMode() {
 
@@ -14,23 +15,26 @@ public class CubeSideEncoders extends BaseAutonomous {
 
         waitForStart();
 
-        /*setHeight(1000, 1);
+        start = winchMotor.getCurrentPosition();
+
+        setHeight(start + 12000, 1);
         while (winchMotor.isBusy() && !isStopRequested()) {}
 
         moveBotEncoders(300, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {};
+        while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        setHeight(-200, 1);
-        while (winchMotor.isBusy() && !isStopRequested()) {};
+        setHeight(start, 1);
+        double waitUntil = time + 1.25;
+        while (time < waitUntil) {}
 
         moveBotEncoders(-300, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {};
+        while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        turnBotEncoders(turn360/4, 1);*/
+        turnBotEncoders(turn360/4, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {}
 
         moveBotEncoders(1700, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {
-        }
+        while (frontLeft.isBusy() && !isStopRequested()) {}
         sleep(500);
         // Visual
         /*turnBotEncoders(turn360/4, -1);
@@ -49,24 +53,17 @@ public class CubeSideEncoders extends BaseAutonomous {
         turnBotEncoders(turn360_7/4, 0.7);*/
 
         moveBotEncoders(3000, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {
-        }
+        while (frontLeft.isBusy() && !isStopRequested()) {}
         sleep(500);
 
         dropMarker();
         sleep(500);
 
-        moveBotEncoders(-600, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {
-        }
+        moveBotEncoders(-700, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {}
         sleep(500);
 
-        turnBotEncoders(turn360 / 8 * 3, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {
-        }
-        sleep(6500);
-        moveBotEncoders(8000, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {
-        }
+        setHeight(start, 1);
+        while (winchMotor.isBusy() && !isStopRequested()) {}
     }
 }
