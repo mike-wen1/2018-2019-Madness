@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.Config;
 
@@ -16,6 +17,8 @@ public class BaseAutonomous extends LinearOpMode {
     protected DcMotor extensionMotor;
 
     private Servo servo;
+
+    private TouchSensor touchSensor;
 
     private Visual visual;
 
@@ -57,7 +60,6 @@ public class BaseAutonomous extends LinearOpMode {
         extensionMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         servo = hardwareMap.servo.get(Config.Marker.MARKER_SERVO);
-
         Visual.DEBUG = true;
         visual = new Visual();
         visual.telemetry = telemetry;
@@ -137,6 +139,10 @@ public class BaseAutonomous extends LinearOpMode {
         winchMotor.setPower(power);
     }
 
+    boolean touchSensorPressed() {
+        return touchSensor.isPressed();
+    }
+
     // ** Not used yet
     boolean seesGold() {
         try {
@@ -148,7 +154,7 @@ public class BaseAutonomous extends LinearOpMode {
     }
 
     // --NEW DRIVETRAIN
-    void moveEncoderVertical (int distance, int power) {
+    void moveEncoderVertical (int distance, double power) {
         frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
         frontRight.setTargetPosition(frontRight.getCurrentPosition() - distance);
         backLeft.setTargetPosition(backLeft.getCurrentPosition() - distance);
@@ -158,7 +164,7 @@ public class BaseAutonomous extends LinearOpMode {
         backRight.setPower(power);
         backLeft.setPower(power);
     }
-    void moveEncoderHorizontal (int distance, int power) {
+    void moveEncoderHorizontal (int distance, double power) {
         frontLeft.setTargetPosition(frontLeft.getCurrentPosition() + distance);
         backLeft.setTargetPosition(backLeft.getCurrentPosition() - distance);
         frontRight.setTargetPosition(frontRight.getCurrentPosition() - distance);

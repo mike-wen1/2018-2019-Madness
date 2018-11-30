@@ -6,13 +6,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp(name = "Main Robot", group = "Main")
 public class Main extends OpMode {
 
-    private TankDrive tankDrive;
+    private MecanumDrive mecanumDrive;
     private LinearLift linearLift;
     private MineralScorer mineralScorer;
     private TeamMarker teamMarker;
 
     public Main() {
-        tankDrive = new TankDrive();
+        mecanumDrive = new MecanumDrive();
         linearLift = new LinearLift();
         mineralScorer = new MineralScorer();
         teamMarker = new TeamMarker();
@@ -20,8 +20,8 @@ public class Main extends OpMode {
 
     @Override
     public void init() {
-        tankDrive.hardwareMap = hardwareMap;
-        tankDrive.telemetry = telemetry;
+        mecanumDrive.hardwareMap = hardwareMap;
+        mecanumDrive.telemetry = telemetry;
 
         linearLift.hardwareMap = hardwareMap;
         linearLift.telemetry = telemetry;
@@ -33,14 +33,14 @@ public class Main extends OpMode {
         teamMarker.telemetry = telemetry;
 
         mineralScorer.init();
-        tankDrive.init();
+        mecanumDrive.init();
         linearLift.init();
         teamMarker.init();
     }
 
     @Override
     public void start() {
-        tankDrive.start();
+        mecanumDrive.start();
         linearLift.start();
         mineralScorer.start();
         teamMarker.start();
@@ -48,9 +48,9 @@ public class Main extends OpMode {
 
     @Override
     public void loop() {
-        tankDrive.gamepad1 = gamepad1;
-        tankDrive.gamepad2 = gamepad2;
-        tankDrive.loop();
+        mecanumDrive.gamepad1 = gamepad1;
+        mecanumDrive.gamepad2 = gamepad2;
+        mecanumDrive.loop();
 
         linearLift.gamepad1 = gamepad1;
         linearLift.gamepad2 = gamepad2;
@@ -67,7 +67,7 @@ public class Main extends OpMode {
 
     @Override
     public void stop() {
-        tankDrive.stop();
+        mecanumDrive.stop();
         linearLift.stop();
         mineralScorer.stop();
         teamMarker.stop();

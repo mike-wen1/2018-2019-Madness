@@ -1,9 +1,6 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-
-@Autonomous
-public class CubeSideEncoders extends BaseAutonomous {
+public class CubeSideAcross extends BaseAutonomous {
     int turn360 = 14000;
     int start;
 
@@ -60,7 +57,7 @@ public class CubeSideEncoders extends BaseAutonomous {
             moveEncoderVertical(700, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {}
 
-            turnBotEncoders(turn360/8 * 3, 1);
+            turnBotEncoders(turn360 / 8 * 3, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {}
         } else {
             turnBotEncoders(turn360 / 4, 1);
@@ -79,7 +76,10 @@ public class CubeSideEncoders extends BaseAutonomous {
         while (frontLeft.isBusy() && !isStopRequested()) {}
         sleep(500);
 
-        setHeight(start, 1);
-        while (winchMotor.isBusy() && !isStopRequested()) {}
+        turnBotEncoders(turn360 / 8 * 3, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {}
+
+        moveEncoderVertical(-15000, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {}
     }
 }

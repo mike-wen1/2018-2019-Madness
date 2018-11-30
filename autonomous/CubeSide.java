@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 @Autonomous
+@Disabled
 public class CubeSide extends BaseAutonomous {
     int turn360_1 = 2500;
     int turn360_7 = 3540;
