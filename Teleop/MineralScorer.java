@@ -24,19 +24,19 @@ public class MineralScorer extends OpMode {
     }
 
     public void loop() {
-        if (gamepad1.dpad_down) {
-            armMotor.setPower(-1);
-        }
-        else if (gamepad1.dpad_up) {
+        if (gamepad1.dpad_down || gamepad2.dpad_down) {
             armMotor.setPower(1);
+        }
+        else if (gamepad1.dpad_up || gamepad2.dpad_up) {
+            armMotor.setPower(-1);
         }
         else {
             armMotor.setPower(0);
         }
-        if (gamepad1.right_trigger > 0.1) {
+        if (gamepad1.right_trigger > 0.1 || gamepad2.right_trigger > 0.1) {
             extensionMotor.setPower(-1);
         }
-        else if (gamepad1.left_trigger > 0.1) {
+        else if (gamepad1.left_trigger > 0.1 || gamepad2.left_trigger > 0.1) {
             extensionMotor.setPower(1);
         }
         else {

@@ -14,6 +14,7 @@ public class BaseAutonomous extends LinearOpMode {
     protected DcMotor backLeft;
     protected DcMotor backRight;
     protected DcMotor winchMotor;
+    protected DcMotor armMotor;
     protected DcMotor extensionMotor;
 
     private Servo servo;
@@ -59,6 +60,11 @@ public class BaseAutonomous extends LinearOpMode {
         extensionMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         extensionMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        armMotor = hardwareMap.dcMotor.get(Config.Mineral.ARM_MOTOR);
+        armMotor.resetDeviceConfigurationForOpMode();
+        armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         servo = hardwareMap.servo.get(Config.Marker.MARKER_SERVO);
         Visual.DEBUG = true;
         visual = new Visual();
@@ -78,7 +84,7 @@ public class BaseAutonomous extends LinearOpMode {
         backRight.setPower(power);
         backLeft.setPower(power);
     }
-    void turnBotEncoders(int distance, int power)  {
+    void turnBotEncoders(int distance, double power)  {
         // ** May be changed
         frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
         frontRight.setTargetPosition(frontRight.getCurrentPosition() + distance);
@@ -143,7 +149,6 @@ public class BaseAutonomous extends LinearOpMode {
         return touchSensor.isPressed();
     }
 
-    // ** Not used yet
     boolean seesGold() {
         try {
             return visual.isGoldMineral(false) == 1;
