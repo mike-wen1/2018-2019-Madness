@@ -29,7 +29,7 @@ public class SphereSideEncoders extends BaseAutonomous {
         moveEncoderVertical(-800, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        moveEncoderHorizontal(-4000, 1);
+        moveEncoderHorizontal(-3800, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
         sleep(100);
 
@@ -62,6 +62,9 @@ public class SphereSideEncoders extends BaseAutonomous {
             telemetry.addLine("Right");
             telemetry.update();
         } else {
+            moveEncoderVertical(600, 1);
+            while (frontLeft.isBusy() && !isStopRequested()) {}
+
             telemetry.addLine("Center");
             telemetry.update();
         }
