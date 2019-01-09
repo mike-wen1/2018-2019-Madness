@@ -16,14 +16,14 @@ public class SphereSideEncoders extends BaseAutonomous {
 
         start = winchMotor.getCurrentPosition();
 
-        setHeight(start + 14500, 1);
+        setHeight(start + 15500, 1);
         while (winchMotor.isBusy() && !isStopRequested()) {}
 
         moveEncoderVertical(800, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         setHeight(start + 8000, 1);
-        double waitUntil = time + 1.5;
+        double waitUntil = time + 2;
         while (time < waitUntil && !isStopRequested()) {}
 
         moveEncoderVertical(-800, 1);
@@ -62,7 +62,7 @@ public class SphereSideEncoders extends BaseAutonomous {
             telemetry.addLine("Right");
             telemetry.update();
         } else {
-            moveEncoderVertical(600, 1);
+            moveEncoderVertical(1000, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {}
 
             telemetry.addLine("Center");
