@@ -23,22 +23,22 @@ public class CubeSideAcross extends BaseAutonomous {
         moveEncoderVertical(800, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        moveEncoderHorizontal(500, 1);
+        moveEncoderHorizontal(-500, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         turnBotEncoders(turn360 / -6, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        moveEncoderVertical(2700, 1);
+        moveEncoderVertical(2900, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
         sleep(100);
+
+        turnBotEncoders(turn360 / 6, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {}
 
         int startingEncoder = frontLeft.getCurrentPosition();
         telemetry.addData("Starting Pos", frontLeft.getCurrentPosition());
         telemetry.update();
-
-        turnBotEncoders(turn360 / 6, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {}
 
         moveEncoderVertical(-5500, 1);
         while (frontLeft.isBusy()) {
@@ -56,6 +56,9 @@ public class CubeSideAcross extends BaseAutonomous {
         if (Math.abs(startingEncoder - endEncoder) <= 1000) {
             telemetry.addLine("Left");
             telemetry.update();
+
+            moveEncoderVertical(1200, 1);
+            while (frontLeft.isBusy() && !isStopRequested()) {}
 
             turnBotEncoders(turn360 / 16 * 3, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {}
