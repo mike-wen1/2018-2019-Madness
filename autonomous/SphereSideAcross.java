@@ -16,9 +16,11 @@ public class SphereSideAcross extends BaseAutonomous {
 
         start = winchMotor.getCurrentPosition();
 
+        // Lower bot
         setHeight(start + 15500, 1);
         while (winchMotor.isBusy() && !isStopRequested()) {}
 
+        // Move to minerals
         moveEncoderVertical(800, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
@@ -31,15 +33,11 @@ public class SphereSideAcross extends BaseAutonomous {
         turnBotEncoders(turn360 / 8, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        /*moveEncoderHorizontal(-3800, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {}
-        sleep(100);*/
-
         int startingEncoder = frontLeft.getCurrentPosition();
         telemetry.addData("Starting Pos", frontLeft.getCurrentPosition());
         telemetry.update();
 
-        // Visual
+        // Visual (Mineral recognition)
 
         moveEncoderVertical(5500, 1);
         while (frontLeft.isBusy()) {
@@ -52,6 +50,7 @@ public class SphereSideAcross extends BaseAutonomous {
 
         int endEncoder = frontLeft.getCurrentPosition();
 
+        // Keeps track of where the mineral is
         int dir = 0;
 
         if (endEncoder - startingEncoder >= 1650) {
@@ -74,7 +73,10 @@ public class SphereSideAcross extends BaseAutonomous {
             telemetry.addLine("Center");
             telemetry.update();
         }
+        moveEncoderVertical(-1000, 1);
+        while (!frontLeft.isBusy() && !isStopRequested()) {}
 
+        // Crash into wall
         turnBotEncoders(-1 * turn360 / 4, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
@@ -87,6 +89,7 @@ public class SphereSideAcross extends BaseAutonomous {
         moveEncoderVertical(5000, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
+        // Go to depot and deposit marker
         turnBotEncoders(turn360 / -8, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
@@ -94,5 +97,9 @@ public class SphereSideAcross extends BaseAutonomous {
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         dropMarker();
+
+        // Go back to crater
+        moveEncoderVertical(-5000, 1); {}
+        while (frontLeft.isBusy() && !isStopRequested()) {}
     }
 }

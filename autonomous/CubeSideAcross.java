@@ -17,12 +17,14 @@ public class CubeSideAcross extends BaseAutonomous {
 
         start = winchMotor.getCurrentPosition();
 
+        // Lower bot
         setHeight(start + 17500, 1);
         while (winchMotor.isBusy() && !isStopRequested()) {}
 
         moveEncoderVertical(800, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
+        // Move to minerals
         moveEncoderHorizontal(-500, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
@@ -40,6 +42,7 @@ public class CubeSideAcross extends BaseAutonomous {
         telemetry.addData("Starting Pos", frontLeft.getCurrentPosition());
         telemetry.update();
 
+        // Scan minerals
         moveEncoderVertical(-5500, 1);
         while (frontLeft.isBusy()) {
             if (seesGold()) {
@@ -75,36 +78,8 @@ public class CubeSideAcross extends BaseAutonomous {
             turnBotEncoders(turn360 / 4, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {}
         }
-        /*if (startingEncoder - endEncoder >= 1650) {
-            telemetry.addLine("Left");
-            telemetry.update();
 
-            moveEncoderVertical(1300, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {
-            }
-
-            turnBotEncoders(turn360 / 16 * 3, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {
-            }
-        } else if (endEncoder - startingEncoder >= 1000) {
-            telemetry.addLine("Right");
-            telemetry.update();
-            moveEncoderVertical(-1300, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {}
-
-            turnBotEncoders(turn360 / 10 * 3, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {}
-
-            moveEncoderVertical(-500, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {}
-        } else {
-            telemetry.addLine("Center");
-            telemetry.update();
-
-            turnBotEncoders(turn360 / 4, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {}
-        }*/
-
+        // Go to depot and deposit
         moveEncoderVertical(-7000, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
         sleep(500);
@@ -112,8 +87,15 @@ public class CubeSideAcross extends BaseAutonomous {
         dropMarker();
         sleep(500);
 
+        // Move to crater
         moveEncoderVertical(900, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
         sleep(500);
+
+        turnBotEncoders(turn360 / -4, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {}
+
+        moveEncoderVertical(5000, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {}
     }
 }
