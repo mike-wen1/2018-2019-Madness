@@ -43,9 +43,12 @@ public class CubeSideAcross extends BaseAutonomous {
         telemetry.update();
 
         // Scan minerals
+        boolean seeMineral = false;
+
         moveEncoderVertical(-5500, 1);
         while (frontLeft.isBusy()) {
             if (seesGold()) {
+                seeMineral = true;
                 telemetry.addData("End", frontLeft.getCurrentPosition());
                 telemetry.update();
                 break;
@@ -53,49 +56,61 @@ public class CubeSideAcross extends BaseAutonomous {
         }
 
         int endEncoder = frontLeft.getCurrentPosition();
-        moveEncoderVertical(400, 1);
+        moveEncoderVertical(-400, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        if (Math.abs(startingEncoder - endEncoder) <= 1000) {
-            telemetry.addLine("Left");
-            telemetry.update();
+        if (seeMineral) {
+            if (Math.abs(startingEncoder - endEncoder) <= 1000) {
+                telemetry.addLine("Left");
+                telemetry.update();
 
-            moveEncoderVertical(1200, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {}
+                moveEncoderVertical(1200, 1);
+                while (frontLeft.isBusy() && !isStopRequested()) {
+                }
 
-            turnBotEncoders(turn360 / 16 * 3, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {}
-        } else if (startingEncoder - endEncoder >= 1650) {
-            telemetry.addLine("Right");
-            telemetry.update();
+                turnBotEncoders(turn360 / 16 * 3, 1);
+                while (frontLeft.isBusy() && !isStopRequested()) {
+                }
+            } else if (startingEncoder - endEncoder >= 1650) {
+                telemetry.addLine("Right");
+                telemetry.update();
 
-            turnBotEncoders(turn360 / 10 * 3, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {}
+                turnBotEncoders(turn360 / 10 * 3, 1);
+                while (frontLeft.isBusy() && !isStopRequested()) {
+                }
+            } else {
+                telemetry.addLine("Center");
+                telemetry.update();
+
+                turnBotEncoders(turn360 / 4, 1);
+                while (frontLeft.isBusy() && !isStopRequested()) {
+                }
+            }
         } else {
-            telemetry.addLine("Center");
-            telemetry.update();
-
-            turnBotEncoders(turn360 / 4, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {}
+            turnBotEncoders(turn360 / 10 * 3, 1);
+            while (frontLeft.isBusy() && !isStopRequested()) {};
         }
 
         // Go to depot and deposit
-        moveEncoderVertical(-7000, 1);
+        moveEncoderVertical(-7250, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
-        sleep(500);
 
         dropMarker();
         sleep(500);
 
-        // Move to crater
-        moveEncoderVertical(900, 1);
+        moveEncoderVertical(700, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
-        sleep(500);
 
         turnBotEncoders(turn360 / -4, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         moveEncoderVertical(5000, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {}
+
+        turnBotEncoders(turn360 / 72 * 7, 1);
+        while (frontLeft.isBusy() && !isStopRequested()) {}
+
+        moveEncoderVertical(6000, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
     }
 }
