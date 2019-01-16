@@ -17,7 +17,7 @@ public class CubeSideEncoders extends BaseAutonomous {
 
         start = winchMotor.getCurrentPosition();
 
-        setHeight(start + 15500, 1);
+        setHeight(start + 17500, 1);
         while (winchMotor.isBusy() && !isStopRequested()) {}
 
         moveEncoderVertical(800, 1);
