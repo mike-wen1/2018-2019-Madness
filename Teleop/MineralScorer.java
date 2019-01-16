@@ -24,11 +24,7 @@ public class MineralScorer extends OpMode {
     }
 
     public void loop() {
-        if (gamepad2.right_stick_y != 0) {
-            armMotor.setPower(-gamepad2.right_stick_y);
-        } else {
-            armMotor.setPower(0);
-        }
+        armMotor.setPower(-gamepad2.right_stick_y);
         if (gamepad1.right_trigger > 0.05 || gamepad2.right_trigger > 0.05) {
             if (gamepad2.right_trigger < 0.05) {
                 extensionMotor.setPower(gamepad1.right_trigger);
