@@ -38,12 +38,14 @@ public class SphereSideAcross extends BaseAutonomous {
         telemetry.update();
 
         // Visual (Mineral recognition)
+        boolean seeMineral = false;
 
         moveEncoderVertical(5500, 1);
         while (frontLeft.isBusy()) {
             if (seesGold()) {
                 telemetry.addData("End", frontLeft.getCurrentPosition());
                 telemetry.update();
+                seeMineral = true;
                 break;
             }
         }
@@ -53,25 +55,29 @@ public class SphereSideAcross extends BaseAutonomous {
         // Keeps track of where the mineral is
         int dir = 0;
 
-        if (endEncoder - startingEncoder >= 1650) {
-            telemetry.addLine("Left");
-            telemetry.update();
+        if (seeMineral) {
+            if (endEncoder - startingEncoder >= 1650) {
+                telemetry.addLine("Left");
+                telemetry.update();
 
-            dir = 1;
-            moveEncoderVertical(900, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {}
-        } else if (endEncoder - startingEncoder < 1250) {
-            telemetry.addLine("Right");
-            telemetry.update();
+                dir = 1;
+                moveEncoderVertical(900, 1);
+                while (frontLeft.isBusy() && !isStopRequested()) {
+                }
+            } else if (endEncoder - startingEncoder < 1250) {
+                telemetry.addLine("Right");
+                telemetry.update();
 
-            dir = 3;
-        } else {
-            moveEncoderVertical(1000, 1);
-            while (frontLeft.isBusy() && !isStopRequested()) {}
+                dir = 3;
+            } else {
+                moveEncoderVertical(1000, 1);
+                while (frontLeft.isBusy() && !isStopRequested()) {
+                }
 
-            dir = 2;
-            telemetry.addLine("Center");
-            telemetry.update();
+                dir = 2;
+                telemetry.addLine("Center");
+                telemetry.update();
+            }
         }
         moveEncoderVertical(-1000, 1);
         while (!frontLeft.isBusy() && !isStopRequested()) {}
