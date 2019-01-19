@@ -116,6 +116,7 @@ public class CubeSideAcross extends BaseAutonomous {
             while (frontLeft.isBusy() && !isStopRequested()) {
             }
 
+
             turnBotEncoders(turn360 / 72 * 19, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {
             }
