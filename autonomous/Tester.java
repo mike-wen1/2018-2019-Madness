@@ -7,9 +7,8 @@ public class Tester extends BaseAutonomous {
 
         initialize();
         waitForStart();
-        telemetry.addData("Init Pos", winchMotor.getCurrentPosition());
-        telemetry.update();
-        //release(1);
-        turnBotEncoders(6500/4, 1);
+        armMotor.setPower(1);
+        double waitUntil = time + 1.5;
+        while (time < waitUntil) {}
     }
 }

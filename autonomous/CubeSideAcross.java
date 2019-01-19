@@ -31,7 +31,7 @@ public class CubeSideAcross extends BaseAutonomous {
         turnBotEncoders(turn360 / -6, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        moveEncoderVertical(2900, 1);
+        moveEncoderVertical(3000, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
         sleep(100);
 
@@ -68,7 +68,7 @@ public class CubeSideAcross extends BaseAutonomous {
                 telemetry.addLine("Left");
                 telemetry.update();
 
-                moveEncoderVertical(1200, 1);
+                moveEncoderVertical(2000, 1);
                 while (frontLeft.isBusy() && !isStopRequested()) {
                 }
 
@@ -102,9 +102,9 @@ public class CubeSideAcross extends BaseAutonomous {
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         dropMarker();
-        sleep(500);
+        sleep(250);
 
-        moveEncoderVertical(700, 1);
+        moveEncoderVertical(600, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         if (dir == 1) {
@@ -112,23 +112,23 @@ public class CubeSideAcross extends BaseAutonomous {
             while (frontLeft.isBusy() && !isStopRequested()) {
             }
 
-            moveEncoderVertical(5000, 1);
+            moveEncoderVertical(1500, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {
             }
 
-            turnBotEncoders(turn360 / 72 * 7, 1);
+            turnBotEncoders(turn360 / 72 * 19, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {
             }
         } else if (dir == 2) {
-            turnBotEncoders(turn360 / -4, 1);
+            turnBotEncoders(turn360 / -18 * 4, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {
             }
 
-            moveEncoderVertical(5000, 1);
+            moveEncoderVertical(4000, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {
             }
 
-            turnBotEncoders(turn360 / 4, 1);
+            turnBotEncoders(turn360 / 10, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {
             }
         } else {
@@ -144,8 +144,11 @@ public class CubeSideAcross extends BaseAutonomous {
             while (frontLeft.isBusy() && !isStopRequested()) {
             }
         }
-        moveEncoderVertical(6000, 1);
+        moveEncoderVertical(6500, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
+        armMotor.setPower(1);
+        double waitUntil = time + 2.5;
+        while (time < waitUntil && !isStopRequested()) {}
     }
 }
