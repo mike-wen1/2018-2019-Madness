@@ -58,34 +58,43 @@ public class SphereSideAcross extends BaseAutonomous {
         moveEncoderVertical(300, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
         if (seeMineral) {
-            if (endEncoder - startingEncoder >= 1650) {
+            if (Math.abs(startingEncoder - endEncoder) >= 2500) {
                 telemetry.addLine("Left");
+                telemetry.addData("Start: ", startingEncoder);
+                telemetry.addData("End: ", endEncoder);
                 telemetry.update();
 
                 dir = 1;
                 moveEncoderVertical(900, 1);
                 while (frontLeft.isBusy() && !isStopRequested()) {
                 }
-            } else if (endEncoder - startingEncoder < 1250) {
+            } else if (Math.abs(startingEncoder - endEncoder) < 1000) {
                 telemetry.addLine("Right");
+                telemetry.addData("Start: ", startingEncoder);
+                telemetry.addData("End: ", endEncoder);
                 telemetry.update();
 
-                moveEncoderVertical(900, 1);
+                moveEncoderVertical(-200, 1);
                 while (frontLeft.isBusy() && !isStopRequested()) {}
                 dir = 3;
             } else {
-                moveEncoderVertical(1000, 1);
+                moveEncoderVertical(600, 1);
                 while (frontLeft.isBusy() && !isStopRequested()) {
                 }
 
                 dir = 2;
                 telemetry.addLine("Center");
+                telemetry.addData("Start: ", startingEncoder);
+                telemetry.addData("End: ", endEncoder);
                 telemetry.update();
             }
         } else {
-            moveEncoderVertical(1000, 1);
+            moveEncoderVertical(900, 1);
             while (frontLeft.isBusy() && !isStopRequested()) {
             }
+            telemetry.addData("Start: ", startingEncoder);
+            telemetry.addData("End: ", endEncoder);
+            telemetry.update();
         }
 
         // Knock off mineral
@@ -113,7 +122,7 @@ public class SphereSideAcross extends BaseAutonomous {
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         // Go to depot and deposit marker
-        turnBotEncoders(turn360 / 8, 1);
+        turnBotEncoders(turn360 / 72 * 11, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         moveEncoderVertical(-8000, 1);
@@ -129,10 +138,11 @@ public class SphereSideAcross extends BaseAutonomous {
         // Go back to crater
         moveEncoderVertical(8000, 1); {}
         armMotor.setPower(1);
-        waitUntil = time + 2;
+        waitUntil = time + 2.25;
         while (time < waitUntil) {}
+        armMotor.setPower(0);
         extensionMotor.setPower(1);
-        waitUntil = time + 2;
+        waitUntil = time + 1.5;
         while (time < waitUntil) {}
         extensionMotor.setPower(0);
         armMotor.setPower(0);
