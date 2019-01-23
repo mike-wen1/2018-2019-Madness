@@ -58,7 +58,6 @@ public class BaseAutonomous extends LinearOpMode {
         extensionMotor.resetDeviceConfigurationForOpMode();
         extensionMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         extensionMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        extensionMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         armMotor = hardwareMap.dcMotor.get(Config.Mineral.ARM_MOTOR);
         armMotor.resetDeviceConfigurationForOpMode();
