@@ -101,11 +101,11 @@ public class SphereSideAcross extends BaseAutonomous {
         turnBotEncoders(turn360 / 4, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        moveEncoderVertical(-1300, 1);
+        moveEncoderVertical(-1750, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         // Move back after moving mineral
-        moveEncoderVertical(1000, 1);
+        moveEncoderVertical(1450, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         // Crash into wall
@@ -130,7 +130,7 @@ public class SphereSideAcross extends BaseAutonomous {
 
         dropMarker();
         double waitUntil = time + 0.5;
-        while (time < waitUntil) {}
+        while (time < waitUntil && !isStopRequested()) {}
 
         telemetry.addData("Dropped", dir);
         telemetry.update();
@@ -139,11 +139,11 @@ public class SphereSideAcross extends BaseAutonomous {
         moveEncoderVertical(8000, 1); {}
         armMotor.setPower(1);
         waitUntil = time + 2.25;
-        while (time < waitUntil) {}
+        while (time < waitUntil && !isStopRequested()) {}
         armMotor.setPower(0);
         extensionMotor.setPower(1);
         waitUntil = time + 1.5;
-        while (time < waitUntil) {}
+        while (time < waitUntil && !isStopRequested()) {}
         extensionMotor.setPower(0);
         armMotor.setPower(0);
         while (frontLeft.isBusy() && !isStopRequested()) {}
