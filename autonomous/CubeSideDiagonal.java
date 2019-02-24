@@ -1,9 +1,10 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-@Autonomous
-public class CubeSideAcross extends BaseAutonomous {
+@Disabled
+public class CubeSideDiagonal extends BaseAutonomous {
     int turn360 = 14000;
     int start;
 
@@ -28,15 +29,8 @@ public class CubeSideAcross extends BaseAutonomous {
         moveEncoderHorizontal(-800, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        turnBotEncoders(turn360 / -72 * 10, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {}
-
-        moveEncoderVertical(3500, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {}
-        sleep(100);
-
-        turnBotEncoders(turn360 / 72 * 10, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {}
+        moveDiagonalForward(2000, 1);
+        while (backLeft.isBusy() && !isStopRequested()) {}
 
         int startingEncoder = frontLeft.getCurrentPosition();
         telemetry.addData("Starting Pos", frontLeft.getCurrentPosition());

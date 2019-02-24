@@ -94,6 +94,19 @@ public class BaseAutonomous extends LinearOpMode {
         backRight.setPower(power);
         backLeft.setPower(power);
     }
+    void moveDiagonalForward(int distance, double power) {
+        if (distance > 0) {
+            backRight.setTargetPosition(backRight.getCurrentPosition() - distance);
+            frontLeft.setTargetPosition(frontLeft.getCurrentPosition() - distance);
+            backRight.setPower(power);
+            frontLeft.setPower(power);
+        } else {
+            backLeft.setTargetPosition(backLeft.getCurrentPosition() + distance);
+            frontRight.setTargetPosition(frontRight.getCurrentPosition() + distance);
+            backLeft.setPower(power);
+            frontRight.setPower(power);
+        }
+    }
 
     // --NOT USED
     void moveBot(int time, double speed)  {

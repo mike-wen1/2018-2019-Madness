@@ -1,9 +1,10 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-@Autonomous
-public class SphereSideAcross extends BaseAutonomous {
+@Disabled
+public class SphereSideDiagonal extends BaseAutonomous {
     int turn360 = 14000;
     int start;
 
@@ -24,13 +25,7 @@ public class SphereSideAcross extends BaseAutonomous {
         moveEncoderVertical(800, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
-        turnBotEncoders(turn360 / 8, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {}
-
-        moveEncoderVertical(-4200, 1);
-        while (frontLeft.isBusy() && !isStopRequested()) {}
-
-        turnBotEncoders(turn360 / -8, 1);
+        moveDiagonalForward(-2000, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
 
         int startingEncoder = frontLeft.getCurrentPosition();
@@ -58,7 +53,7 @@ public class SphereSideAcross extends BaseAutonomous {
         moveEncoderVertical(300, 1);
         while (frontLeft.isBusy() && !isStopRequested()) {}
         if (seeMineral) {
-            if (Math.abs(startingEncoder - endEncoder) >= 2700) {
+            if (Math.abs(startingEncoder - endEncoder) >= 2500) {
                 telemetry.addLine("Left");
                 telemetry.addData("Start: ", startingEncoder);
                 telemetry.addData("End: ", endEncoder);
@@ -136,12 +131,13 @@ public class SphereSideAcross extends BaseAutonomous {
         telemetry.update();
 
         // Go back to crater
-        moveEncoderVertical(9000, 1); {}
+        moveEncoderVertical(8500, 1); {}
         armMotor.setPower(1);
-        waitUntil = time + 0.5;
+        waitUntil = time + 2.25;
         while (time < waitUntil && !isStopRequested()) {}
+        armMotor.setPower(0);
         extensionMotor.setPower(1);
-        waitUntil = time + 2;
+        waitUntil = time + 1.5;
         while (time < waitUntil && !isStopRequested()) {}
         extensionMotor.setPower(0);
         armMotor.setPower(0);
